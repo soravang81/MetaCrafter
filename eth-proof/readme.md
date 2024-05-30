@@ -1,9 +1,9 @@
-# ETH Proof - Solidity Contract**
+# ETH Proof - Token Contract
 
-### Project Overview**
+### Project Overview
 This project involves creating a Solidity smart contract that implements a simple ERC20-like token. The contract will include functionalities for minting and burning tokens, as well as storing token details and balances. The project will help you understand the basics of Solidity, including data types, mappings, functions, and conditional statements.
 
-### Contract Requirements**
+### Contract Requirements
 1. ****Public Variables****: The contract will have public variables to store the details about the token, including:
    - Token Name
    - Token Abbreviation (Abbrv.)
@@ -22,13 +22,13 @@ This project involves creating a Solidity smart contract that implements a simpl
    - Decrease the balance of the specified address by the same amount.
    - Ensure that the balance of the address is greater than or equal to the amount to be burned before proceeding.
 
-### Relevant Course Sections**
+### Relevant Course Sections
 - ****Introduction to Data Types****
 - ****Mapping in Solidity****
 - ****Functions Demonstration****
 - ****Conditional Statements****
 
-### Example Contract**
+### Example Contract
 Below is a basic Solidity contract template to get you started:
 
 ```solidity
@@ -66,14 +66,14 @@ contract MyToken {
 ### Steps to Implement the Contract
 
 1. **Define Public Variables**:
-   - Define `tokenName`, `tokenAbbrv`, and `totalSupply` as public variables.
+   - The contract already defines public variables `name`, `nickname`, and `supply` to store details about the token.
 
 2. **Define Mapping**:
-   - Create a mapping `balances` to map addresses to their token balances.
+   - The contract includes a mapping named `userBalances` to map addresses to their token balances.
 
 3. **Implement Mint Function**:
-   - The `mint` function will increase the `totalSupply` and update the balance of the specified address.
+   - The `mint` function increases the `supply` and updates the balance of the specified address (`_address`).
 
 4. **Implement Burn Function**:
-   - The `burn` function will decrease the `totalSupply` and the balance of the specified address.
-   - Ensure the balance is sufficient before burning tokens using a `require` statement.
+   - The `burn` function decreases the `supply` and the balance of the specified address (`_address`).
+   - It ensures that the balance is sufficient before burning tokens using a `require` statement.
