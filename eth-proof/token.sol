@@ -5,7 +5,7 @@ contract Token {
     string public nickname;
     uint public supply;
 
-    mapping(address => uint) public userBalances;
+    mapping(address => uint) public balances;
 
     constructor() {
         name = "Litcoin";
@@ -15,12 +15,12 @@ contract Token {
 
     function mint(address _address, uint _value) public {
         supply += _value;
-        userBalances[_address] += _value;
+        balances[_address] += _value;
     }
 
     function burn(address _address, uint _value) public {
-        require(userBalances[_address] >= _value, "Balance is not enough");
+        require(balances[_address] >= _value, "Balance is not enough");
         supply -= _value;
-        userBalances[_address] -= _value;
+        balances[_address] -= _value;
     }
 }
