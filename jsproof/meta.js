@@ -1,6 +1,4 @@
-
-let NFTs = [];
-
+const NFTs = [];
 
 function mintNFT (name , img , nickname , currency , value ) {
     let nft = {
@@ -26,13 +24,13 @@ function listNFTs () {
 
 
 function getTotalSupply() {
-    console.log("Number of NFTs minted : " , NFTs.length)
+    console.log("\n\nNumber of NFTs minted : " , NFTs.length+"\n\n")
 }
 
-mintNFT("dogecoin" , "blackforest" , "dcx" , "dollar" , 100 );
-mintNFT("dogecoin" , "blackforest" , "dcx" , "dollar" , 100 );
-mintNFT("dogecoin" , "blackforest" , "dcx" , "dollar" , 100 );
-mintNFT("dogecoin" , "blackforest" , "dcx" , "dollar" , 100 );
+mintNFT("Dogecoin" , "blackforest" , "dcx" , "dollar" , 100 );
+mintNFT("Memecoin" , "greenforest" , "mcx" , "dollar" , 100 );
+mintNFT("Mycoin" , "desert" , "mc" , "euro" , 100 );
+mintNFT("Litcoin" , "lake" , "lcx" , "ruppee" , 100 );
 
 listNFTs();
 
