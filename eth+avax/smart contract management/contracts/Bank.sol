@@ -23,9 +23,9 @@ contract Currency {
         supply -= _value;
         bank[_address] -= _value;
     }
-    function Transfer(address _sender, address _receiver , uint _value) public {
-        require(bank[_sender] >= _value, "Bank balance is not enough");
+    function Transfer(address _sender , address  _receiver , uint _value) public {
+        require(_value > 0, "Must send some ETH");
         bank[_sender] -= _value;
         bank[_receiver] += _value;
-    }
+}
 }

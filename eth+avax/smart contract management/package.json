@@ -2,11 +2,14 @@
   "name": "smart-contract-management",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
+    "set-module": "node set-module.js",
+    "set-commonjs": "node set-commonJs.js",
+    "dev": "npm run set-module && vite",
+    "compile": "npm run set-commonjs && truffle compile && npm run set-module",
+    "migrate": "npm run set-commonjs && truffle migrate --network sepolia && npm run set-module",
+    "start": "npm run set-module && react-scripts start",
     "build": "tsc && vite build",
-    "migrate": "truffle migrate --network sepolia",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -20,7 +23,6 @@
     "solc": "^0.8.26"
   },
   "devDependencies": {
-    "@typechain/truffle-v5": "^8.0.7",
     "@types/chai": "^4.3.16",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.14.2",
@@ -40,5 +42,6 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "vite": "^5.2.0"
-  }
+  },
+  "type": "module"
 }

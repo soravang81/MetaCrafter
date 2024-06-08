@@ -19,7 +19,6 @@ const App: React.FC = () => {
         console.error('Provider is not initialized');
         return;
       }
-
       try {
         setLoading(true)
         const accounts = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
@@ -80,19 +79,21 @@ const App: React.FC = () => {
       console.error('Error spending currency', error);
     }
   };
-  const handleTrasnfer = async()=>{
-    if (!currency || amount <= 0 ) return;
+  const handleTransfer = async()=>{
+    if (!currency ) return;
     try {
       setLoading(true)
-      const tx = await currency.Transfer(account,ethers.utils.parseUnits(amount.toString(), 18), receiver);
+      const tx = await currency.Transfer(account , receiver,ethers.utils.parseEther(amount.toString())  );
       await tx.wait();
+      console.log(tx);
       setLoading(false)
       console.log(tx)
       const newBalance = await currency.bank(account);
       setBalance(ethers.utils.formatUnits(newBalance, 18));
     } catch (error) {
+      console.log(error);
       setLoading(false)
-      console.error('Error spending currency', error);
+      console.error('Error transfering currency', error);
     }
   }
 
@@ -117,10 +118,10 @@ const App: React.FC = () => {
       
       <form className='w-fit flex gap-4 items-center'>
         <div className='flex flex-col gap-5'>
-        <input type="number" className='border-2 py-4 rounded-lg p-2 text-xl' placeholder='Amount' onChange={(e)=>{setAmount(parseInt(e.target.value))}} />
+        <input type="text" className='border-2 py-4 rounded-lg p-2 text-xl' placeholder='Amount' onChange={(e)=>{setAmount(parseInt(e.target.value))}} />
         <input type='text' className='border-2 py-4 rounded-lg p-2 text-xl' placeholder='Receiver address' onChange={(e)=>{setReceiver(e.target.value)}}/>
         </div>
-        <button className='w-40 text-white self-end shadow-2xl border-2 border-slate-900 font-semibold text-2xl bg-blue-500 rounded-md px-10 py-3' onClick={handlePrint} disabled={loading}>Transfer</button>
+        <button className='w-40 text-white self-end shadow-2xl border-2 border-slate-900 font-semibold text-2xl bg-blue-500 rounded-md px-10 py-3' onClick={handleTransfer} disabled={loading}>Transfer</button>
       </form>
     </div>
   );

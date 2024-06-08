@@ -1,5 +1,8 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 require('dotenv').config();
+// import HDWalletProvider from "@truffle/hdwallet-provider"
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const api_key = process.env.REACT_APP_ALCHEMY_API_KEY || ""
 const private_key = process.env.REACT_APP_PRIVATE_KEY || ""
@@ -14,7 +17,7 @@ module.exports = {
       }),
       network_id: 11155111,
       gas: 5500000,
-      gasPrice: 10000000000,
+      gasPrice: 100000000,
       timeoutBlocks: 2000,
       networkCheckTimeout: 100000,
     },

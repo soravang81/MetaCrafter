@@ -11,7 +11,7 @@ if (typeof window !== 'undefined' && (window as any).ethereum) {
     }
     console.log('Connected account:', accounts[0]);
   }).catch((error: any) => {
-    console.error('User denied account access', error);
+    console.error('Account ', error);
   });
 } else {
   console.error('MetaMask is not installed');
