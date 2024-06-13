@@ -10,8 +10,8 @@ contract Token {
     mapping(address => uint) public balance;
 
     constructor () public {
-        name = "Dollar";
-        symbol = "$";
+        name = "NotCoin";
+        symbol = "ncx";
         supply = 0;
         owner = msg.sender;
     }
