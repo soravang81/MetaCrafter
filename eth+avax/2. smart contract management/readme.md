@@ -24,8 +24,8 @@ There is currently a bug that affects running both the Truffle and React app. Th
 ### Handling the Bug
 
 1. **Change Project Configuration**:
-   - In `package.json`, change `type` to `commonjs`.
-   - In `tsconfig.json` and `tsconfig.ts`, change `module` to `commonjs` and comment out `moduleResolution`.
+   - In `package.json`, change `type` to `commonjs` to run truffle command like (truffle deploy).
+   - Agian change the type to "module" to run the frontend using - npm run dev.
 
 ## Steps
 
@@ -49,7 +49,6 @@ If you experience network errors, re-run the migration command.
 
 **Revert Configuration Changes**:
    - Change `type` in `package.json` to `module`.
-   - Change `module` in `tsconfig.json` and `tsconfig.ts` to `esnext` and uncomment `moduleResolution`.
 
 ```bash
 # Run the Application
