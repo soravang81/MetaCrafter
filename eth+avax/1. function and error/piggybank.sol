@@ -27,7 +27,7 @@ contract PiggyBank {
 
         assert(address(this).balance >= amount);
 
-        (bool success, ) = owner.call{value: amount}("");
+        (bool success,) = owner.call{value: amount}("");
         if (!success) {
             revert("Failed to withdraw funds");
         }
@@ -35,7 +35,6 @@ contract PiggyBank {
         emit Withdrawal(owner, amount);
     }
 
-    // Function to get the contract balance
     function getBalance() public view returns (uint256) {
         return address(this).balance;
     }

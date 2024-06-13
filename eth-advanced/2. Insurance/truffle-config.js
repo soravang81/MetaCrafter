@@ -1,8 +1,5 @@
-const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 require('dotenv').config();
-// import HDWalletProvider from "@truffle/hdwallet-provider"
-// import dotenv from "dotenv";
-// dotenv.config();
 
 const api_key = process.env.REACT_APP_ALCHEMY_API_KEY || ""
 const private_key = process.env.REACT_APP_PRIVATE_KEY || ""
@@ -24,7 +21,7 @@ module.exports = {
   },
   compilers: {
     solc: {
-      version: "0.8.0",
+      version: "0.8.20",
       settings: {
         optimizer: {
           enabled: true,

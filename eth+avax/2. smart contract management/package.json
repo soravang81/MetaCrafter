@@ -2,10 +2,11 @@
   "name": "smart-contract-management",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "set-module": "node set-module.js",
     "set-commonjs": "node set-commonJs.js",
-    "dev": "npm run set-module && vite",
+    "dev": "vite",
     "compile": "npm run set-commonjs && truffle compile && npm run set-module",
     "migrate": "npm run set-commonjs && truffle migrate --network sepolia && npm run set-module",
     "start": "npm run set-module && react-scripts start",
@@ -42,6 +43,5 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "vite": "^5.2.0"
-  },
-  "type": "module"
+  }
 }

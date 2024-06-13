@@ -3,7 +3,6 @@ import { ethers } from 'ethers';
 import { provider, signer } from './ethers.ts';
 import Currency from '../build/contracts/Currency.json';
 import { Circles, CirclesWithBar, InfinitySpin } from 'react-loader-spinner'
-import { disabled } from 'express/lib/application.js';
 
 const App: React.FC = () => {
   const [account, setAccount] = useState<string | null>(null);
