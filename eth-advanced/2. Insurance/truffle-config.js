@@ -3,7 +3,6 @@ require('dotenv').config();
 
 const api_key = process.env.REACT_APP_ALCHEMY_API_KEY || ""
 const private_key = process.env.REACT_APP_PRIVATE_KEY || ""
-console.log(private_key , api_key)
 
 module.exports = {
   networks: {
@@ -14,9 +13,11 @@ module.exports = {
       }),
       network_id: 11155111,
       gas: 5500000,
-      gasPrice: 100000000,
-      timeoutBlocks: 2000,
+      gasPrice: 2500000000,
+      timeoutBlocks: 20000,
       networkCheckTimeout: 100000,
+      // maxPriorityFeePerGas: 2000000000, // Set max priority fee
+      // maxFeePerGas: 2500000000, 
     },
   },
   compilers: {

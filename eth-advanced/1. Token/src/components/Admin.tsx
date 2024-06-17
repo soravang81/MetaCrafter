@@ -78,7 +78,7 @@ const AdminPage: React.FC = () => {
             const provider = new ethers.providers.Web3Provider(ethereum);
             const signer = provider.getSigner();
 
-            // Deploy MyToken
+            // Deploy Admin contract
             const MyTokenFactory = new ethers.ContractFactory(Admin.abi, Admin.bytecode, signer);
             const initialSupplyInWei = ethers.utils.parseUnits(initialSupply.toString(), 18);
             const myTokenContract = await MyTokenFactory.deploy(tokenName, tokenSymbol, initialSupplyInWei);
@@ -88,7 +88,7 @@ const AdminPage: React.FC = () => {
             setTokenAddress(myTokenContract.address);
             sessionStorage.setItem("tokenContract", myTokenContract.address);
 
-            // Deploy TokenVesting
+            // Deploy Vesting contract
             const TokenVestingFactory = new ethers.ContractFactory(Vesting.abi, Vesting.bytecode, signer);
             const tokenVestingContract = await TokenVestingFactory.deploy(myTokenContract.address);
             await tokenVestingContract.deployed();

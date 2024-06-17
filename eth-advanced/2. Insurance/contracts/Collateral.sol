@@ -1,53 +1,53 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 contract CollateralProtectionInsurance is ReentrancyGuard, Ownable {
     address public insured;
-    uint256 public premium;
-    uint256 public coveragePercentage;
+    uint256 public price;
+    uint256 public coverageAmount;
     uint256 public lastPaid;
 
-    enum PolicyType { Partial, Full }
+    enum PolicyType { Basic, Premium }
     PolicyType public policy;
-
-    event PremiumPaid(address indexed user, uint256 amount);
+    event PricePaid(address indexed user, uint256 amount);
     event Claimed(address indexed user, uint256 amount);
+    event PolicyChanged(PolicyType newPolicy);
 
     modifier onlyInsured() {
         require(msg.sender == insured, "Only the insured can perform this action");
         _;
     }
 
-    constructor(address _insured) Ownable(msg.sender) {
+    constructor(address _insured) Ownable(_insured) {
         insured = _insured;
-        transferOwnership(_insured); // Use OpenZeppelin's Ownable to set the owner to the insured
     }
 
     function setPolicy(PolicyType _policy) public onlyInsured {
         policy = _policy;
-        if (policy == PolicyType.Partial) {
-            premium = 0.02 ether;
-            coveragePercentage = 50;
-        } else if (policy == PolicyType.Full) {
-            premium = 0.1 ether;
-            coveragePercentage = 100;
+        if (policy == PolicyType.Basic) {
+            price = 0.001 ether;
+            coverageAmount = 0.02 ether;
+        } else if (policy == PolicyType.Premium) {
+            price = 0.025 ether;
+            coverageAmount = 0.05 ether;
         }
+        emit PolicyChanged(policy);
     }
 
-    function payPremium() public payable onlyInsured nonReentrant {
-        require(msg.value == premium, "Incorrect premium amount");
+    function payPrice() public payable onlyInsured nonReentrant {
+        require(msg.value == price, "Incorrect price");
         lastPaid = block.timestamp;
-        emit PremiumPaid(msg.sender, msg.value);
+        emit PricePaid(msg.sender, msg.value);
     }
 
     function claim(uint256 loanAmount) public onlyInsured nonReentrant {
         require(block.timestamp <= lastPaid + 30 days, "Policy expired");
-        uint256 payout = (loanAmount * coveragePercentage) / 100;
-        payable(insured).transfer(payout);
-        emit Claimed(insured, payout);
+        require(loanAmount <= coverageAmount, "Loan amount exceeds coverage");
+        payable(insured).transfer(loanAmount);
+        emit Claimed(insured, loanAmount);
     }
 
     receive() external payable {}

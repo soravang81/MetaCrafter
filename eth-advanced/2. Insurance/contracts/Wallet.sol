@@ -1,46 +1,51 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 contract CryptoWalletInsurance is ReentrancyGuard, Ownable {
     address public insured;
-    uint256 public premium;
+    uint256 public price;
     uint256 public coverageAmount;
     uint256 public lastPaid;
 
     enum PolicyType { Basic, Premium }
-    PolicyType public policy;
+    PolicyType public policy; 
 
-    event PremiumPaid(address indexed user, uint256 amount);
+    event PricePaid(address indexed user, uint256 amount);
     event Claimed(address indexed user, uint256 amount);
+    event PolicyChanged(PolicyType newPolicy);
 
     modifier onlyInsured() {
         require(msg.sender == insured, "Only the insured can perform this action");
         _;
     }
 
-    constructor(address _insured) Ownable(msg.sender) {
+    constructor(address _insured) Ownable(_insured) {
         insured = _insured;
-        transferOwnership(_insured); // Use OpenZeppelin's Ownable to set the owner to the insured
+    }
+
+    function getInsured() public view returns (address) {
+        return insured;
     }
 
     function setPolicy(PolicyType _policy) public onlyInsured {
         policy = _policy;
         if (policy == PolicyType.Basic) {
-            premium = 0.01 ether;
-            coverageAmount = 1 ether;
+            price = 0.001 ether;
+            coverageAmount = 0.02 ether;
         } else if (policy == PolicyType.Premium) {
-            premium = 0.05 ether;
-            coverageAmount = 5 ether;
+            price = 0.025 ether;
+            coverageAmount = 0.05 ether;
         }
+        emit PolicyChanged(policy);
     }
 
-    function payPremium() public payable onlyInsured nonReentrant {
-        require(msg.value == premium, "Incorrect premium amount");
+    function payPrice() public payable onlyInsured nonReentrant {
+        require(msg.value == price, "Incorrect price");
         lastPaid = block.timestamp;
-        emit PremiumPaid(msg.sender, msg.value);
+        emit PricePaid(msg.sender, msg.value);
     }
 
     function claim() public onlyInsured nonReentrant {

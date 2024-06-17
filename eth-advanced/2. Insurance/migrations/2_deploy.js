@@ -1,5 +1,5 @@
-const Admin = artifacts.require("Admin");
-const Vesting = artifacts.require("Vesting");
+const InsuranceFactory = artifacts.require("InsuranceFactory");
 
-module.exports = async function (deployer) {
+module.exports = function(deployer) {
+  deployer.deploy(InsuranceFactory);
 };
