@@ -18,3 +18,26 @@ To pass the assessment, complete the following steps:
 2. Have clearly defined policies (a minimum of two different types) for each insurance type.
 3. Follow the factory contract model where for each user, a separate insurance contract is deployed.
 4. Users should be able to pay the premium and claim the insurance with the required checks.
+
+## To run this project
+
+1. Install dependencies
+```code
+npm install
+```
+
+2. Change the module type in package.json to "commonjs"
+
+3. Rename the .env.example to .env and put in your api key and wallet private key
+
+4. Deploy on sepolia testnet
+```code
+truffle deploy --network sepolia
+```
+
+5. Again , Change the module type in package.json to "module"
+
+6. Start the frontend
+```code
+npm run dev
+```
