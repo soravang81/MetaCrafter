@@ -1,30 +1,20 @@
-# React + TypeScript + Vite
+# Problem Statement
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Using Solidity, create an insurance provider protocol. The insurance mechanism is simple. Users of an insurance platform provide liquidity to cover damage in the case of an insured event, and they themselves receive interest for providing liquidity. You can refer to Etherisc for some inspiration.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You will have to build two main components of the insurance:
 
-## Expanding the ESLint configuration
+1. **Crypto Wallet Insurance**: Build an insurance protocol that helps owners of smart contract wallets stay protected from hackers. The owners will pay an insurance amount per month, set by the protocol. You can choose to invest the insurance amount in other DeFi schemes.
+   
+2. **Collateral Protection for Crypto-Backed Loans**: Based on the insurance policy the user has chosen, decide to give back the entire loan or a percentage of the loan when the collateral value drops.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Assessment Criteria
 
-- Configure the top-level `parserOptions` property like this:
+To pass the assessment, complete the following steps:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Create separate Solidity contracts for both insurance types.
+2. Have clearly defined policies (a minimum of two different types) for each insurance type.
+3. Follow the factory contract model where for each user, a separate insurance contract is deployed.
+4. Users should be able to pay the premium and claim the insurance with the required checks.
