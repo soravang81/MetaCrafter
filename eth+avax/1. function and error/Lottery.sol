@@ -65,7 +65,6 @@ contract Lottery {
 
         lotteryEnded = true;
 
-        // Refund all players
         for (uint i = 0; i < players.length; i++) {
             payable(players[i]).transfer(ticketPrice);
         }

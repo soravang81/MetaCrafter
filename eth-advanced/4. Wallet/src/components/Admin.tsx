@@ -1,64 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
+import Web3 from 'web3';
 import Factory from '../../build/contracts/Factory.json';
 import Wallet from '../../build/contracts/Wallet.json';
 
 const App: React.FC = () => {
-  const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
-  const [signer, setSigner] = useState<ethers.Signer | null>(null);
-  const [factoryContract, setFactoryContract] = useState<ethers.Contract | null>(null);
-  const [walletContract, setWalletContract] = useState<ethers.Contract | null>(null);
+  const [web3, setWeb3] = useState<Web3 | null>(null);
+  const [accounts, setAccounts] = useState<string[]>([]);
+  const [factoryContract, setFactoryContract] = useState<any>(null);
+  const [walletContract, setWalletContract] = useState<any>(null);
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [balance, setBalance] = useState<string | null>(null);
   const [recipient, setRecipient] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
   const [network, setNetwork] = useState<string>('sepolia');
+  // const networkId = Number(await web3Instance.eth.net.getId());
+  const networkId = 11155111;
 
   useEffect(() => {
-    const init = async () => {
+    const initWeb3 = async () => {
       if ((window as any).ethereum) {
-        const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-        await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
-        const signer = provider.getSigner();
-        const factoryContractAddress = Factory.networks[11155111].address
-        const factoryContract = new ethers.Contract(factoryContractAddress,Factory.abi,signer);
-        console.log(factoryContract)
-        setProvider(provider);
-        setSigner(signer);
-        setFactoryContract(factoryContract);
-        await changeNetwork(network);
-      }
-      else {
-        console.log("wallet error")
+        const web3Instance = new Web3((window as any).ethereum);
+        try {
+          const accounts = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+          const factoryAddress = Factory.networks[networkId]?.address;
+
+          const factoryInstance = new web3Instance.eth.Contract(Factory.abi, factoryAddress);
+          setWeb3(web3Instance);
+          setAccounts(accounts);
+          setFactoryContract(factoryInstance);
+          await changeNetwork(network);
+        } catch (error) {
+          console.error('Error initializing web3:', error);
+        }
+      } else {
         console.error('Please install MetaMask!');
       }
     };
 
-    init();
+    initWeb3();
   }, [network]);
 
   const changeNetwork = async (network: string) => {
-    let chainId: number;
-    let contractAddress: string;
+    const chainIds: { [key: string]: number } = {
+      sepolia: 11155111,
+      mainnet: 1,
+    };
 
-    switch (network) {
-      case 'sepolia':
-        chainId = 11155111; // Sepolia chain ID
-        contractAddress = Factory.networks[11155111].address; 
-        break;
-      case 'mainnet':
-        chainId = 1; // Mainnet chain ID
-        contractAddress = 'YOUR_MAINNET_CONTRACT_ADDRESS';
-        break;
-      default:
-        return;
-    }
+    const chainId = chainIds[network];
 
-    if (provider && signer) {
+    if (web3 && accounts.length > 0) {
       try {
-        await provider.send('wallet_switchEthereumChain', [{ chainId: ethers.utils.hexValue(chainId) }]);
-        const factoryContract = new ethers.Contract(contractAddress, Factory.abi, signer);
-        setFactoryContract(factoryContract);
+        await (window as any).ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: `0x${chainId.toString(16)}` }],
+        });
+        const factoryAddress = Factory.networks[networkId]?.address;
+        const factoryInstance = new web3.eth.Contract(Factory.abi, factoryAddress);
+        setFactoryContract(factoryInstance);
       } catch (error) {
         console.error('Error switching network:', error);
       }
@@ -66,20 +64,21 @@ const App: React.FC = () => {
   };
 
   const createWallet = async () => {
-    if (factoryContract && signer) {
+    if (web3 && factoryContract && accounts.length > 0) {
       try {
-        const tx = await factoryContract.createWallet({ from: await signer.getAddress() });
-        const receipt = await tx.wait();
-        console.log('Transaction Hash:', tx.hash);
+        const tx = await factoryContract.methods.createWallet().send({ from: accounts[0] });
+        console.log("tx" , tx);
+        const receipt = await web3.eth.getTransactionReceipt(tx.transactionHash);
+        console.log(receipt);
+        const walletAddress = await tx?.events?.WalletCreated?.returnValues?.walletAddress;
+        console.log('Transaction Hash:', tx.transactionHash);
         console.log('Transaction Receipt:', receipt);
-  
-        const walletAddress = receipt.events?.find((event: any) => event.event === 'WalletCreated')?.args.walletAddress;
-        console.log('Wallet Address:', walletAddress);
-  
         if (walletAddress) {
-          setWalletAddress(walletAddress);
-          const wallet = new ethers.Contract(walletAddress, Wallet.abi, signer);
-          setWalletContract(wallet);
+          setWalletAddress(walletAddress)
+          const walletInstance = new web3.eth.Contract(Wallet.abi, walletAddress);
+          console.log(walletInstance)
+          setWalletContract(walletInstance);
+          getBalance();
         } else {
           console.error('Wallet address not found in receipt events');
         }
@@ -88,39 +87,86 @@ const App: React.FC = () => {
       }
     }
   };
-  
-  
 
-  const getBalance = async () => {
-    if (walletContract) {
-      const balance = await walletContract.getBalance();
-      setBalance(ethers.utils.formatEther(balance));
+  const directTransfer = async () => {
+    if (web3 && walletContract && accounts.length > 0) {
+      try {
+        const tx = await walletContract.methods.executeTransfer(recipient, web3.utils.toWei(amount, 'ether')).send({ from: accounts[0] });
+        const receipt = await web3.eth.getTransactionReceipt(tx.transactionHash);
+        console.log('Direct transfer successful', tx);
+        console.log('Transaction Receipt:', receipt);
+        getBalance();
+      } catch (error) {
+        console.error('Direct transfer failed:', error);
+      }
     }
   };
 
-  const sendFunds = async () => {
-    if (walletContract && recipient && amount) {
+  const getBalance = async () => {
+    if (web3 && walletContract) {
+      const balance = await walletContract.methods.getBalance().call();
+      console.log(balance);
+      setBalance(web3.utils.fromWei(balance, 'ether'));
+    }
+  };
+
+  const createUserOperation = async () => {
+    if (web3 && walletContract && accounts.length > 0) {
+      const sender = accounts[0];
+      const nonce = await web3.eth.getTransactionCount(sender);
+      const etherValue = web3.utils.toWei(amount, 'ether');
+      const callData = await walletContract.methods.executeTransfer(recipient, etherValue).encodeABI();
+      const messageHash = web3.utils.soliditySha3(sender, nonce, callData);
+      if (messageHash) {
+        const signature = await web3.eth.sign(messageHash, sender);
+        const userOp = {
+          sender,
+          nonce,
+          callData,
+          callGasLimit: 1000000000,
+          verificationGasLimit: 60000000,
+          preVerificationGas: 10000000,
+          maxFeePerGas: web3.utils.toWei('100', 'gwei'),
+          maxPriorityFeePerGas: web3.utils.toWei('70', 'gwei'),
+          paymasterAndData: '0x',
+          signature,
+        };
+        return userOp;
+      }
+    }
+    return null;
+  };
+
+  const sendUserOperation = async () => {
+    if (web3 && walletContract && recipient && amount) {
       try {
-        const tx = await walletContract.transfer(
-          recipient,
-          ethers.utils.parseEther(amount),
-          { gasLimit: 3000000 }
-        );
-        await tx.wait();
-        getBalance();
-      } catch (error) {
-        console.error('Transaction failed:', error);
-        alert('Transaction failed. Check console for details.');
+        const userOp = await createUserOperation();
+        console.log(userOp)
+        const tx = await walletContract.methods.handleUserOperation(userOp).send({ from: accounts[0], gas: 1000000 });
+        const receipt = await web3.eth.getTransactionReceipt(tx.transactionHash);
+        console.log('Logs:', tx.events.Logs);
+        console.log('Transaction :',tx);
+        console.log('New Contract Balance:', web3.utils.fromWei(await walletContract.methods.getBalance().call(), 'ether'));
+      } catch (error :any) {
+        if (error.receipt && error.receipt.logs && error.receipt.logs.length > 0) {
+          const revertLog = error.receipt.logs.find((log : any) => log.topics[0] === web3.utils.keccak256('OperationHandled(address,uint256)'));
+          if (revertLog) {
+            console.error('Revert Reason:', web3.utils.hexToUtf8(revertLog.data));
+          }
+        }
+        console.error('Operation failed:', error);
+        alert(`Operation failed. Check console for details. Error: ${(error as any).message}`);
       }
     }
   };
 
   const depositFunds = async () => {
-    if (walletContract) {
-      const depositAmount = ethers.utils.parseEther(amount);
+    if (web3 && walletContract) {
+      const depositAmount = web3.utils.toWei(amount, 'ether');
       try {
-        const tx = await walletContract.deposit({ value: depositAmount });
-        await tx.wait();
+        const tx = await walletContract.methods.deposit().send({ from: accounts[0], value: depositAmount, gas: 1000000 });
+        const receipt = await web3.eth.getTransactionReceipt(tx.transactionHash);
+        console.log('Deposit successful', receipt);
         getBalance();
       } catch (error) {
         console.error('Deposit failed:', error);
@@ -178,24 +224,29 @@ const App: React.FC = () => {
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-4"
               />
               <button
-                onClick={sendFunds}
+                onClick={sendUserOperation}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mb-4"
-                >
-                  Send Funds
-                </button>
-                <button
-                  onClick={depositFunds}
-                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-                >
-                  Deposit Funds
-                </button>
-              </div>
+              >
+                Send Funds
+              </button>
+              <button
+                onClick={directTransfer}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mb-4"
+              >
+                Direct Transfer
+              </button>
+              <button
+                onClick={depositFunds}
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+              >
+                Deposit Funds
+              </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-    );
-  };
-  
-  export default App;
-  
+    </div>
+  );
+};
+
+export default App;

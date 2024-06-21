@@ -3,7 +3,6 @@ require('dotenv').config();
 
 const api_key = process.env.REACT_APP_ALCHEMY_API_KEY || ""
 const private_key = process.env.REACT_APP_PRIVATE_KEY || ""
-console.log(private_key , api_key)
 
 module.exports = {
   networks: {
