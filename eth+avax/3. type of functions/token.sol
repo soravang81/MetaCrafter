@@ -1,38 +1,33 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity ^0.8.0;
 
-contract Token {
-    string public name;
-    string public symbol;
-    uint public supply;
-    address public owner;
+import "./node_modules/openzeppelin-contracts/token/ERC20/ERC20.sol";
+import "./node_modules/openzeppelin-contracts/access/Ownable.sol";
 
-    mapping(address => uint) public balance;
-
-    constructor () public {
-        name = "NotCoin";
-        symbol = "ncx";
-        supply = 0;
-        owner = msg.sender;
+contract Token is ERC20, Ownable {
+    constructor() ERC20("NotCoin", "NOT") {
+        // Mint initial supply to the contract deployer
+        _mint(msg.sender, 1000 * 10 ** decimals());
     }
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can mint token");
-        _;
+    // Function to mint new tokens, only callable by the owner
+    function mint(address account, uint256 amount) public onlyOwner {
+        require(account != address(0), "ERC20: mint to the zero address");
+        _mint(account, amount);
     }
 
-    function Mint(address _address ,uint  _value)public onlyOwner { 
-        supply += _value;
-        balance[_address] += _value;
+    // Function to burn tokens from the caller's balance
+    function burn(uint256 amount) public {
+        _burn(msg.sender, amount);
     }
-    function Burn(uint _value) public {
-        require(balance[msg.sender] >= _value, "Balance is not enough");
-        supply -= _value;
-        balance[msg.sender] -= _value;
+
+    // Function to transfer tokens, with additional checks
+    function transfer(address recipient, uint256 amount) public override returns (bool) {
+        require(recipient != address(0), "ERC20: transfer to the zero address");
+        require(amount > 0, "ERC20: transfer amount must be greater than zero");
+        require(balanceOf(msg.sender) >= amount, "ERC20: transfer amount exceeds balance");
+
+        _transfer(msg.sender, recipient, amount);
+        return true;
     }
-    function Transfer(address  _receiver , uint _value) public {
-        require(_value > 0, "Must send some ETH");
-        balance[msg.sender] -= _value;
-        balance[_receiver] += _value;
-}
 }

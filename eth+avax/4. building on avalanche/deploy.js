@@ -1,20 +1,21 @@
+// SPDX-License-Identifier: MIT
 const hre = require("hardhat");
+const { ethers } = hre;
 
 async function main() {
-  // Get the Points smart contract
-  const Points = await hre.ethers.getContractFactory("Points");
+  const [deployer] = await ethers.getSigners();
+  console.log("Deploying contracts with the account:", deployer.address);
 
-  // Deploy it
-  const points = await Points.deploy();
-  await points.waitForDeployment();
+  const initialSupply = ethers.utils.parseUnits("1000", 18); // Adjust initial supply if needed
+  const DegenToken = await ethers.getContractFactory("DegenToken");
+  const token = await DegenToken.deploy(initialSupply);
 
-  // Display the contract address
-  console.log(`Points token deployed to ${points.target}`);
+  console.log("DegenToken address:", token.address);
 }
 
-// Hardhat recommends this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then(() => process.exit(0))
+  .catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
