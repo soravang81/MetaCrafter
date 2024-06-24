@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
+
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -10,44 +11,42 @@ contract DegenToken is ERC20, Ownable {
         BOOSTER
     }
 
-    mapping(address => Items) public itemsOwned;
-    mapping(Items => uint256) public itemCost;
+    mapping(address => mapping(uint8 => bool)) public itemsOwned;
+    mapping(uint8 => uint256) public itemCost;
 
     constructor(uint256 initialSupply) ERC20("Degen", "DGN") Ownable(msg.sender) {
         require(initialSupply > 0, "Initial supply must be greater than zero");
         _mint(msg.sender, initialSupply);
 
-        // Initialize item costs 
-        itemCost[Items.DEGEN_NFT] = 100 ;
-        itemCost[Items.GEMS] = 50;
-        itemCost[Items.BOOSTER] = 200;
+        // Initial item costs 
+        itemCost[uint8(Items.DEGEN_NFT)] = 100;
+        itemCost[uint8(Items.GEMS)] = 50;
+        itemCost[uint8(Items.BOOSTER)] = 200;
     }
 
     function mint(address account, uint256 amount) public onlyOwner {
-        require(account != address(0), "ERC20: mint to the zero address");
         _mint(account, amount);
     }
 
-    // Function to burn tokens from the caller's balance
     function burn(uint256 amount) public {
         _burn(msg.sender, amount);
     }
 
     function transfer(address recipient, uint256 amount) public override returns (bool) {
-        require(recipient != address(0), "ERC20: transfer to the zero address");
-        require(amount > 0, "ERC20: transfer amount must be greater than zero");
-        require(balanceOf(msg.sender) >= amount, "ERC20: transfer amount exceeds balance");
+        require(amount > 0, "Transfer amount must be greater than zero");
+        require(balanceOf(msg.sender) >= amount, "Transfer amount exceeds balance");
 
         _transfer(msg.sender, recipient, amount);
         return true;
     }
 
     function redeemItem(Items item) public {
-        require(itemsOwned[msg.sender] == Items(0), "Item already owned");
-        require(itemCost[item] > 0, "Item cost must be greater than zero");
-        require(balanceOf(msg.sender) >= itemCost[item], "Insufficient balance to redeem item");
+        require(!itemsOwned[msg.sender][uint8(item)], "Item already owned");
+        require(itemCost[uint8(item)] > 0, "Item cost must be greater than zero");
+        require(balanceOf(msg.sender) >= itemCost[uint8(item)], "Insufficient balance to redeem item");
 
-        itemsOwned[msg.sender] = item;
-        _transfer(msg.sender, address(this), itemCost[item]); // Transfer tokens to contract
+        itemsOwned[msg.sender][uint8(item)] = true;
+        _transfer(msg.sender, address(this), itemCost[uint8(item)]);
     }
+
 }
