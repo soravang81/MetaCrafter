@@ -66,7 +66,7 @@ describe("DegenToken contract", function () {
     });
 
     it("Users should be able to redeem DEGEN_NFT with associated costs", async function () {
-
+``
         const DEGEN_NFT_COST = 100;
         const initialContractBalance = await token.balanceOf(token.address);
 
