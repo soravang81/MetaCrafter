@@ -19,7 +19,7 @@ contract Currency {
         bank[_address] += _value;
     }
     function Spend(address _address, uint _value) public {
-        require(ba`nk[_address] >= _value, "Bank balance is not enough");
+        require(bank[_address] >= _value, "Bank balance is not enough");
         supply -= _value;
         bank[_address] -= _value;
     }
