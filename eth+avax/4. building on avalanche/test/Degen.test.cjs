@@ -65,8 +65,7 @@ describe("DegenToken contract", function () {
         expect(addr1Balance.toString()).to.equal(transferAmount.toString());
     });
 
-    it("Users should be able to redeem DEGEN_NFT with associated costs", async function () {
-``
+    it("Users should be able to redeem items with associated costs", async function () {
         const DEGEN_NFT_COST = 100;
         const initialContractBalance = await token.balanceOf(token.address);
 
@@ -77,5 +76,13 @@ describe("DegenToken contract", function () {
 
         const contractBalanceAfterDegenNFT = await token.balanceOf(token.address);
         expect(contractBalanceAfterDegenNFT.toString()).to.equal(initialContractBalance.add(DEGEN_NFT_COST).toString());
+    });
+
+    it("Should return correct item names for owned items", async function () {
+        await token.connect(owner).redeemItem(Items.DEGEN_NFT);
+        await token.connect(owner).redeemItem(Items.GEMS);
+
+        const ownedItems = await token.getOwnedItems(owner.address);
+        expect(ownedItems).to.deep.equal(["DEGEN_NFT", "GEMS"]);
     });
 });

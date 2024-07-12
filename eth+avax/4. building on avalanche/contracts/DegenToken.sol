@@ -49,4 +49,30 @@ contract DegenToken is ERC20, Ownable {
         _transfer(msg.sender, address(this), itemCost[uint8(item)]);
     }
 
+    function getItemName(Items item) public pure returns (string memory) {
+        if (item == Items.DEGEN_NFT) return "DEGEN_NFT";
+        if (item == Items.GEMS) return "GEMS";
+        if (item == Items.BOOSTER) return "BOOSTER";
+        return "";
+    }
+
+    function getOwnedItems(address owner) public view returns (string[] memory) {
+        uint8 itemCount = 0;
+        for (uint8 i = 0; i < 3; i++) {
+            if (itemsOwned[owner][i]) {
+                itemCount++;
+            }
+        }
+
+        string[] memory ownedItems = new string[](itemCount);
+        uint8 index = 0;
+        for (uint8 i = 0; i < 3; i++) {
+            if (itemsOwned[owner][i]) {
+                ownedItems[index] = getItemName(Items(i));
+                index++;
+            }
+        }
+
+        return ownedItems;
+    }
 }

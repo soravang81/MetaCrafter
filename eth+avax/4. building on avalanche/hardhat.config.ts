@@ -13,7 +13,7 @@ module.exports = {
     fuji: {
       url: "https://api.avax-test.network/ext/bc/C/rpc",
       chainId: 43113,
-      gasPrice: 25000000000,
+      gasPrice: 2500000000,
       accounts: [
         privateKey
       ]
