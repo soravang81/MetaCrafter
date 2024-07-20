@@ -36,9 +36,10 @@ DegenToken is an ERC20 token named "Degen" with the symbol "DGN". It includes ad
         ```
     - Make sure to add your wallet private key to deploy this contract in the .env (create new .env file in root folder) , u can look at .env.example
 
+## Author
+
+[@sourxv_me](https://twitter.com/sourxv_me)
 
 ## Help
 
 For any issues or inquiries, reach out on Twitter: [@sourxv_me](https://twitter.com/sourxv_me)
-
-SPDX-License-Identifier: MIT
