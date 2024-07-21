@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NFTCollection Contract
+
+A Solidity smart contract for creating a unique ERC721 token collection with integrated metadata and ownership features.
+
+## Description
+
+NFTCollection is an ERC721 token named "NFTCollection" with the symbol "NFTC". It utilizes the ERC721URIStorage extension for token metadata management and inherits from Ownable for administrative controls. The contract integrates with an external IFxPortal interface for potential cross-chain functionality, emphasizing the contract's flexibility in real-world applications. 
+
+Key features include:
+- Minting NFTs with unique prompts and metadata URLs.
+- Storing metadata and prompts associated with each token.
+- Owner-only minting permissions, ensuring controlled distribution.
+- Transfer the token and nfts to the mumbai testnet using fxportal contract.
 
 ## Getting Started
 
-First, run the development server:
+These instructions will guide you through setting up and deploying the NFTCollection contract.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Installing
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To get started with the contract, you need to set up your development environment:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+    ```
+    git clone https://github.com/soravang81/MetaCrafter.git
+    ```
+2. Navigate to the project directory:
+    ```
+    cd poly-proof-advanced/nftcollection/
+    ```
+3. Install the required dependencies using npm or yarn:
+    ```
+    npm install
+    ```
+4. Get all the apis inside the .env.example and put in a new file named .env
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Executing program
 
-## Learn More
+1. Deploy the contract using a tool like Remix, Truffle, or Hardhat. For example, using Truffle:
+    - Compile the contract:
+        ```
+        npx hardhat compile
+        ```
+    - Migrate (deploy) the contract:
+        ```
+        npx hardhat run deploy.js --network fuji
+        ```
+    - Make sure to add all the apis in the .env (create new .env file in root folder) , u can look at .env.example
 
-To learn more about Next.js, take a look at the following resources:
+## Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[@sourxv_me](https://twitter.com/sourxv_me)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Help
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For any issues or inquiries, reach out on Twitter: [@sourxv_me](https://twitter.com/sourxv_me)
