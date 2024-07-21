@@ -10,13 +10,13 @@ module.exports = {
     sepolia: {
       url:  `https://eth-sepolia.g.alchemy.com/v2/${api_key.toString()}`,
       chainId: 11155111,
-      gasPrice: 25000,
+      gasPrice: 250000,
       accounts: [
         private_key
       ]
     },
     holesky : {
-      url: "https://eth-holesky.g.alchemy.com/v2/qHx1EyO6UyYMcympPKXlkCLOLScgrEXz",
+      url: `https://eth-holesky.g.alchemy.com/v2/${api_key.toString()}`,
       chainId: 17000,
       gasPrice: 250000,
       accounts: [
@@ -32,7 +32,7 @@ module.exports = {
       ]
     },
     amoy: {
-      url: "https://polygon-amoy.g.alchemy.com/v2/qHx1EyO6UyYMcympPKXlkCLOLScgrEXz",
+      url: `https://polygon-amoy.g.alchemy.com/v2/${api_key.toString()}`,
       chainId: 80002,
       gasPrice: 18000,
       accounts: [

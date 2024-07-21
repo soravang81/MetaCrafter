@@ -4,31 +4,24 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-interface FxPortal {
-    function approve(address to, uint256 tokenId) external;
-    function deposit(uint256 tokenId, address depositor, uint256 amount) external;
+interface IFxPortal {
+    function deposit(address user, address rootToken, bytes calldata depositData) external;
 }
 
-contract NFTCollection is ERC721URIStorage, Ownable(msg.sender) {
+contract NFTCollection is ERC721URIStorage, Ownable {
     uint256 public nextTokenId = 0;
     mapping(uint256 => string) private _prompts;
 
-    FxPortal public fxPortal;
+    IFxPortal public fxPortal;
 
-    event NFTMinted(uint256 indexed tokenId, address indexed owner, string tokenURI,string prompt);
-    event NFTDeposited(uint256 indexed tokenId, address indexed depositor);
+    event NFTMinted(uint256 indexed tokenId, address indexed owner, string tokenURI, string prompt);
 
-    constructor(address _fxPortal) ERC721("NFTCollection", "NFTC") {
-        fxPortal = FxPortal(_fxPortal);
+    constructor(address _fxPortal) ERC721("NFTCollection", "NFTC") Ownable(msg.sender) {
+        fxPortal = IFxPortal(_fxPortal);
     }
 
-    function mint(
-        address to,
-        string memory tokenURI,
-        string memory prompt
-    ) external onlyOwner {
-        uint256 tokenId = nextTokenId;
-        nextTokenId++;
+    function mint(address to, string memory tokenURI, string memory prompt) external onlyOwner {
+        uint256 tokenId = nextTokenId++;
         _mint(to, tokenId);
         _setTokenURI(tokenId, tokenURI);
         _prompts[tokenId] = prompt;
@@ -36,19 +29,8 @@ contract NFTCollection is ERC721URIStorage, Ownable(msg.sender) {
         emit NFTMinted(tokenId, to, tokenURI, prompt);
     }
 
-    function getTokenPrompt(uint256 tokenId) external view returns (string memory) {
+    function getTokenPrompt(uint256 tokenId) public view returns (string memory) {
         require(_ownerOf(tokenId) != address(0), "Token does not exist");
         return _prompts[tokenId];
-    }
-    
-    function fetchAllNFTs() external view returns (string[] memory prompts, string[] memory uris) {
-        uint256 total = nextTokenId;
-        prompts = new string[](total);
-        uris = new string[](total);
-        for (uint256 i = 0; i < total; i++) {
-            prompts[i] = _prompts[i];
-            uris[i] = tokenURI(i);
-        }
-        return (prompts, uris);
     }
 }

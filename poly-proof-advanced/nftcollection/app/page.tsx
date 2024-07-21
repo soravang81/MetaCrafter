@@ -5,7 +5,6 @@ import { toast } from "sonner";
 import { ethers } from "ethers";
 import NFTCollection from "../artifacts/contracts/NFTcollection.sol/NFTCollection.json";
 
-const contractAddress = "0x2bCc5E54A17c6e0508271a24AC34f9410cB7133B";
 type nft = {
   name : string,
   prompt : string,
@@ -15,6 +14,7 @@ export default function Home(): React.ReactNode {
   const [prompt, setPrompt] = useState<string>("");
   const [files, setFiles] = useState<File[]>([]);
   const [cid, setCid] = useState<string | null>(null);
+  const [isMinted, setIsMinted] = useState<boolean>(false);
   const [nfts, setNfts] = useState<nft[]>([]);
   const [account, setAccount] = useState<string | null>(null);
  
@@ -117,13 +117,10 @@ export default function Home(): React.ReactNode {
       const urisArray = (cid as string).split(',').map(uri => uri.trim());
       const namesArray = "MyNFT"
 
-      // Creating a promise for minting NFTs
       const myPromise = new Promise(async (resolve, reject) => {
         try {
-          // Simulate loading delay (you can remove this in actual implementation)
           await new Promise(resolve => setTimeout(resolve, 2000));
 
-          // Assuming an API endpoint /api/mint-nfts exists on your server
           const response = await axios.post('/api/scripts/mint', {
             prompts: promptsArray,
             uris: urisArray,
@@ -131,6 +128,7 @@ export default function Home(): React.ReactNode {
           });
           console.log(response.data)
           resolve(response.data.message);
+          setIsMinted(true)
         } catch (error) {
           console.log(error)
           reject('Failed to mint NFTs');
@@ -152,13 +150,10 @@ export default function Home(): React.ReactNode {
 
   const transferNFTs = async () => {
     try {
-      const response = await axios.post('/api/scripts/transfer',{
-        
-      });
-      const { message } = response.data;
   
-      const myPromise = new Promise((resolve) => {
-        // Simulate delay for better user experience (optional)
+      const myPromise = new Promise(async(resolve) => {
+        const response = await axios.post('/api/scripts/transfer');
+        const { message } = response.data;        
         setTimeout(() => {
           resolve(message);
         }, 2000); // Adjust delay as needed
@@ -177,61 +172,7 @@ export default function Home(): React.ReactNode {
     }
   };
   
-
-  const fetchNFTs = async () => {
-    if (!account) return;
-
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-    const nftContract = new ethers.Contract(contractAddress, NFTCollection.abi, provider);
-    console.log(account , nftContract)
-    const balance = await nftContract.balanceOf(account);
-    const nftPromises = [];
-
-    for (let i = 0; i < balance.toNumber(); i++) {
-      const tokenId = await nftContract.tokenOfOwnerByIndex(account, i);
-      const tokenURI = await nftContract.tokenURI(tokenId);
-      const tokenName = await nftContract.tokenName(tokenId);
-      const prompt = await nftContract.tokenPrompt(tokenId);
-      nftPromises.push({ tokenId, tokenURI, tokenName, prompt });
-    }
-
-    const fetchedNfts = await Promise.all(nftPromises);
-    // setNfts(fetchedNfts);
-  };
 console.log(nfts)
-  const fetch = async () => {
-    try {  
-      const myPromise = new Promise(async (resolve, reject) => {
-        try {
-          await new Promise(resolve => setTimeout(resolve, 2000));
-          const response = await axios.get<string>('/api/scripts/fetch');
-          const bufferData = JSON.parse(response.data);
-          console.log(bufferData);
-          setNfts(bufferData);
-          resolve(bufferData);
-        } catch (error) {
-          console.log(error)
-          reject('Failed to fetch NFTs');
-        }
-      })
-      toast.promise(myPromise, {
-        loading: 'Fetching Nfts...',
-        success: (data) => {
-          console.log(data);
-          return `NFTs fetched successfully: ${data}`;
-        },
-        error: 'Failed to fetch NFTs',
-      });
-    } catch (error) {
-      console.error('Failed to fetch NFTs:', error);
-      toast.error('Failed to fetch NFTs');
-    }
-  };
-  useEffect(() => {
-    if (account) {
-      // fetch();
-    }
-  }, [account]);
 
   return (
     <div className="flex flex-col justify-center items-center absolute left-0 right-0 top-0 bottom-0">
@@ -282,12 +223,7 @@ console.log(nfts)
           Mint NFTs
         </button>
       )}
-      {nfts.length === 0 && (
-        <button
-          className="mt-4 px-4 py-2 rounded-xl bg-red-500"
-          onClick={fetch}
-        >Fetch my NFTs</button>)}
-      {cid && (
+      {isMinted && cid && (
         <button
           className="mt-4 px-4 py-2 rounded-xl bg-yellow-500"
           onClick={transferNFTs}

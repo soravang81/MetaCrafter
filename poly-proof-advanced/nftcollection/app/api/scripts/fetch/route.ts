@@ -31,15 +31,12 @@ export async function GET(req: NextRequest, res: NextResponse) {
       });
     });
 
-    // Wait for the fetchNFTs promise to resolve and return the JSON response
     const result = await fetchNFTs;
     console.log("Raw result data:", result);
 
-    // Replace single quotes with double quotes for valid JSON parsing
     const formattedResult = (result as string).replace(/'/g, '"');
     console.log("Formatted result data:", formattedResult);
 
-    // Parse the formatted string to JSON
     let parsedResult;
     try {
       parsedResult = JSON.parse(formattedResult);

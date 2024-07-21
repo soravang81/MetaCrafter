@@ -3,16 +3,14 @@ import { spawn } from 'child_process';
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
-    const { prompts, names, uris } = await req.json(); // Assuming req.body contains prompts, names, and uris arrays
+    const { prompts, names, uris } = await req.json(); 
 
-    // Construct environment variables or command-line arguments for the script
     const env = {
-      ...process.env, // Include existing environment variables
+      ...process.env,
       NEXT_PUBLIC_PROMPTS: JSON.stringify(prompts),
       NEXT_PUBLIC_BASE_URI: JSON.stringify(uris)
     };
 
-    // Function to run the minting script
     const runMintScript = () => {
       return new Promise((resolve, reject) => {
         const mintScript = spawn('npx', ['hardhat', 'run', 'scripts/mint.ts', '--network', 'sepolia'], { env });
@@ -36,7 +34,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
       });
     };
 
-    // Run the minting script and handle the response
     const result = await runMintScript();
     return NextResponse.json({ message: result });
   } catch (error) {
