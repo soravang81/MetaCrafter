@@ -38,7 +38,7 @@ async function main() {
   for (let i = 0; i < prompts.length; i++) {
     const prompt = prompts[i];
     const imageURI = uris[i];
-    const tx = await nft.mint(deployer.address, imageURI, prompt, {
+    const tx = await nft.mint(deployer.address, "https://ipfs.io/ipfs/"+imageURI, prompt, {
       gasPrice: higherGasPrice,
       nonce: nonce++ 
     });

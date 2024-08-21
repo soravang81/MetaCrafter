@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 interface IFxPortal {
     function deposit(address user, address rootToken, bytes calldata depositData) external;
 }
-
+// Author : @soravang81
 contract NFTCollection is ERC721URIStorage, Ownable {
     uint256 public nextTokenId = 0;
     mapping(uint256 => string) private _prompts;
@@ -32,5 +32,8 @@ contract NFTCollection is ERC721URIStorage, Ownable {
     function getTokenPrompt(uint256 tokenId) public view returns (string memory) {
         require(_ownerOf(tokenId) != address(0), "Token does not exist");
         return _prompts[tokenId];
+    }
+    function getBalance(address owner) public view returns (uint256) {
+        return balanceOf(owner);
     }
 }

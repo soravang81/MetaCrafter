@@ -18,7 +18,6 @@ contract DegenToken is ERC20, Ownable {
         require(initialSupply > 0, "Initial supply must be greater than zero");
         _mint(msg.sender, initialSupply);
 
-        // Initial item costs 
         itemCost[uint8(Items.DEGEN_NFT)] = 100;
         itemCost[uint8(Items.GEMS)] = 50;
         itemCost[uint8(Items.BOOSTER)] = 200;

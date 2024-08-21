@@ -20,6 +20,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "ethers": "^5.7.2",
+    "fx-portal": "^1.0.3",
     "next": "14.2.4",
     "openai": "^4.52.3",
     "react": "^18",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-etherscan": "^3.1.8",
     "@openzeppelin/contracts": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/node": "^20",

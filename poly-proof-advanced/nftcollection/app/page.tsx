@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "sonner";
-import { ethers } from "ethers";
-import NFTCollection from "../artifacts/contracts/NFTcollection.sol/NFTCollection.json";
 
 type nft = {
   name : string,
@@ -17,16 +15,6 @@ export default function Home(): React.ReactNode {
   const [isMinted, setIsMinted] = useState<boolean>(false);
   const [nfts, setNfts] = useState<nft[]>([]);
   const [account, setAccount] = useState<string | null>(null);
- 
-  useEffect(() => {
-    const loadAccount = async () => {
-      if ((window as any).ethereum) {
-        const accounts = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
-        setAccount(accounts[0]);
-      }
-    };
-    loadAccount();
-  }, []);
 
   const handleSubmit = async () => {
     const myPromise = new Promise(async (resolve, reject) => {
@@ -135,7 +123,6 @@ export default function Home(): React.ReactNode {
         }
       });
 
-      // Display toast notification based on promise state
       toast.promise(myPromise, {
         loading: 'Minting...',
         success: (data) => `${data}`,
@@ -156,7 +143,7 @@ export default function Home(): React.ReactNode {
         const { message } = response.data;        
         setTimeout(() => {
           resolve(message);
-        }, 2000); // Adjust delay as needed
+        }, 2000);
       });
   
       toast.promise(myPromise, {
