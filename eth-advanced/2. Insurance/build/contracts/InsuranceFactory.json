@@ -1,0 +1,1903 @@
+{
+  "contractName": "InsuranceFactory",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "insuranceContract",
+          "type": "address"
+        }
+      ],
+      "name": "CollateralInsuranceCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "insuranceContract",
+          "type": "address"
+        }
+      ],
+      "name": "WalletInsuranceCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "createWalletInsurance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "createCollateralInsurance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"insuranceContract\",\"type\":\"address\"}],\"name\":\"CollateralInsuranceCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"insuranceContract\",\"type\":\"address\"}],\"name\":\"WalletInsuranceCreated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"createCollateralInsurance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"createWalletInsurance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"OwnableInvalidOwner(address)\":[{\"details\":\"The owner is not a valid owner account. (eg. `address(0)`)\"}],\"OwnableUnauthorizedAccount(address)\":[{\"details\":\"The caller account is not authorized to perform an operation.\"}]},\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/InsuranceFactory.sol\":\"InsuranceFactory\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6\",\"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12\",\"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF\"]},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"keccak256\":\"0xf980daa263b661ab8ddee7d4fd833c7da7e7995e2c359ff1f17e67e4112f2236\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7448ab095d6940130bcf76ba47a2eab14148c83119523b93dd89f6d84edd6c02\",\"dweb:/ipfs/QmawrZ4voKQjH3oomXT3Kuheb3Mnmo2VvVpxg8Ne5UJUrd\"]},\"project:/contracts/Collateral.sol\":{\"keccak256\":\"0x5df3ae1b1a6d59ecfe256edbdaba74251c790b5e23c8d101c445e8af5e155da4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://40421bc1050fd1b79e9d672eac853a1021c2062d50f6b1875020627bfe14aaa2\",\"dweb:/ipfs/QmR6Liz4aJ9s2AyMzegKjWvnqMjLaduYGTM5jy3tKEP5Ct\"]},\"project:/contracts/InsuranceFactory.sol\":{\"keccak256\":\"0xfc7118af7e0c91a6be639471d0aa15f126510cc46f5833cceb89141ad2e1d2c7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3853d51e5833d485338b272fcec75f4dc142a70b7ca18eec3401848502d4676f\",\"dweb:/ipfs/QmeMth4sWf7Ni7yoZ9p6Jjw3ohiSqJ2VikQh1xeankEQoi\"]},\"project:/contracts/Wallet.sol\":{\"keccak256\":\"0x3ccfc45cb2b5a52df0abfceaa6fbfcc4e045ba7f0837542cbe76db92cfd17e39\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7cd7a2173327f485d4daedc15639120a57c62e83f26bad79c5c3008bf6e267e6\",\"dweb:/ipfs/QmTYLsfMKEPMQtPWLu6dqPWjuapgqkHvrKBYtoWnr6Xs2d\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561000f575f80fd5b50338061003557604051631e4fbdf760e01b81525f600482015260240160405180910390fd5b61003e81610044565b50610093565b5f80546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b61133d806100a05f395ff3fe608060405234801561000f575f80fd5b5060043610610055575f3560e01c8063715018a6146100595780638da5cb5b146100635780639373c44514610081578063e73faaaa14610089578063f2fde38b14610091575b5f80fd5b6100616100a4565b005b5f54604080516001600160a01b039092168252519081900360200190f35b6100616100b7565b610061610139565b61006161009f36600461028a565b6101b3565b6100ac6101f5565b6100b55f610221565b565b5f3390505f816040516100c990610270565b6001600160a01b039091168152602001604051809103905ff0801580156100f2573d5f803e3d5ffd5b506040516001600160a01b038216815290915033907f1e0b8eaf695896b206f251c69ce62078a74320d12287968695e36e4bf8b41ee4906020015b60405180910390a25050565b5f3390505f8160405161014b9061027d565b6001600160a01b039091168152602001604051809103905ff080158015610174573d5f803e3d5ffd5b506040516001600160a01b038216815290915033907fa3c19013232328fa129e43cb3c1a03233e6c7bd65be78fa8e5d9c30d0742fda19060200161012d565b6101bb6101f5565b6001600160a01b0381166101e957604051631e4fbdf760e01b81525f60048201526024015b60405180910390fd5b6101f281610221565b50565b5f546001600160a01b031633146100b55760405163118cdaa760e01b81523360048201526024016101e0565b5f80546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6107ff806102b883390190565b61085180610ab783390190565b5f6020828403121561029a575f80fd5b81356001600160a01b03811681146102b0575f80fd5b939250505056fe608060405234801561000f575f80fd5b506040516107ff3803806107ff83398101604081905261002e916100e0565b60015f55806001600160a01b03811661006057604051631e4fbdf760e01b81525f600482015260240160405180910390fd5b6100698161008f565b50600280546001600160a01b0319166001600160a01b039290921691909117905561010d565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0905f90a35050565b5f602082840312156100f0575f80fd5b81516001600160a01b0381168114610106575f80fd5b9392505050565b6106e58061011a5f395ff3fe6080604052600436106100a8575f3560e01c806374bce0bc1161006257806374bce0bc146101685780638da5cb5b14610187578063a035b1fe146101a4578063c4b8db46146101b9578063eebb1363146101ce578063f2fde38b146101ed575f80fd5b80630505c8c9146100b35780634cbc03d9146100e25780634ce115d8146101135780634e71d92d1461011d57806367c0d00f14610131578063715018a614610154575f80fd5b366100af57005b5f80fd5b3480156100be575f80fd5b506006546100cc9060ff1681565b6040516100d991906105d1565b60405180910390f35b3480156100ed575f80fd5b506002546001600160a01b03165b6040516001600160a01b0390911681526020016100d9565b61011b61020c565b005b348015610128575f80fd5b5061011b6102cf565b34801561013c575f80fd5b5061014660045481565b6040519081526020016100d9565b34801561015f575f80fd5b5061011b6103cd565b348015610173575f80fd5b5061011b6101823660046105f7565b6103de565b348015610192575f80fd5b506001546001600160a01b03166100fb565b3480156101af575f80fd5b5061014660035481565b3480156101c4575f80fd5b5061014660055481565b3480156101d9575f80fd5b506002546100fb906001600160a01b031681565b3480156101f8575f80fd5b5061011b61020736600461061c565b6104da565b6002546001600160a01b0316331461023f5760405162461bcd60e51b815260040161023690610642565b60405180910390fd5b610247610517565b600354341461028a5760405162461bcd60e51b815260206004820152600f60248201526e496e636f727265637420707269636560881b6044820152606401610236565b4260055560405134815233907ffbb78d90c03ede71a52f887ed761d6178e310a2c426206ba0dc64a01691e16f1906020015b60405180910390a26102cd60015f55565b565b6002546001600160a01b031633146102f95760405162461bcd60e51b815260040161023690610642565b610301610517565b6005546103119062278d0061068a565b4211156103515760405162461bcd60e51b815260206004820152600e60248201526d141bdb1a58de48195e1c1a5c995960921b6044820152606401610236565b6002546004546040516001600160a01b039092169181156108fc0291905f818181858888f1935050505015801561038a573d5f803e3d5ffd5b506002546004546040519081526001600160a01b03909116907fd8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a906020016102bc565b6103d561053f565b6102cd5f61056c565b6002546001600160a01b031633146104085760405162461bcd60e51b815260040161023690610642565b6006805482919060ff191660018381811115610426576104266105bd565b02179055505f60065460ff166001811115610443576104436105bd565b036104635766038d7ea4c6800060035566470de4df820000600455610498565b600160065460ff16600181111561047c5761047c6105bd565b03610498576658d15e1762800060035566b1a2bc2ec500006004555b6006546040517f72a13a5c6bbfd98d3dc4719b767656873b3c13c3139cb44ab7d3002250ba63da916104cf9160ff909116906105d1565b60405180910390a150565b6104e261053f565b6001600160a01b03811661050b57604051631e4fbdf760e01b81525f6004820152602401610236565b6105148161056c565b50565b60025f540361053957604051633ee5aeb560e01b815260040160405180910390fd5b60025f55565b6001546001600160a01b031633146102cd5760405163118cdaa760e01b8152336004820152602401610236565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0905f90a35050565b634e487b7160e01b5f52602160045260245ffd5b60208101600283106105f157634e487b7160e01b5f52602160045260245ffd5b91905290565b5f60208284031215610607575f80fd5b813560028110610615575f80fd5b9392505050565b5f6020828403121561062c575f80fd5b81356001600160a01b0381168114610615575f80fd5b60208082526028908201527f4f6e6c792074686520696e73757265642063616e20706572666f726d20746869604082015267399030b1ba34b7b760c11b606082015260800190565b808201808211156106a957634e487b7160e01b5f52601160045260245ffd5b9291505056fea2646970667358221220822e1c166f6a14079eb372591412dd28eabf1b5adaf94d3b47942622d79a219764736f6c63430008140033608060405234801561000f575f80fd5b5060405161085138038061085183398101604081905261002e916100e0565b60015f55806001600160a01b03811661006057604051631e4fbdf760e01b81525f600482015260240160405180910390fd5b6100698161008f565b50600280546001600160a01b0319166001600160a01b039290921691909117905561010d565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0905f90a35050565b5f602082840312156100f0575f80fd5b81516001600160a01b0381168114610106575f80fd5b9392505050565b6107378061011a5f395ff3fe60806040526004361061009d575f3560e01c806374bce0bc1161006257806374bce0bc146101375780638da5cb5b14610156578063a035b1fe14610187578063c4b8db461461019c578063eebb1363146101b1578063f2fde38b146101d0575f80fd5b80630505c8c9146100a8578063379607f5146100d75780634ce115d8146100f857806367c0d00f14610100578063715018a614610123575f80fd5b366100a457005b5f80fd5b3480156100b3575f80fd5b506006546100c19060ff1681565b6040516100ce919061060c565b60405180910390f35b3480156100e2575f80fd5b506100f66100f1366004610632565b6101ef565b005b6100f6610352565b34801561010b575f80fd5b5061011560045481565b6040519081526020016100ce565b34801561012e575f80fd5b506100f661040b565b348015610142575f80fd5b506100f6610151366004610649565b61041c565b348015610161575f80fd5b506001546001600160a01b03165b6040516001600160a01b0390911681526020016100ce565b348015610192575f80fd5b5061011560035481565b3480156101a7575f80fd5b5061011560055481565b3480156101bc575f80fd5b5060025461016f906001600160a01b031681565b3480156101db575f80fd5b506100f66101ea36600461066e565b610518565b6002546001600160a01b031633146102225760405162461bcd60e51b815260040161021990610694565b60405180910390fd5b61022a610552565b60055461023a9062278d006106dc565b42111561027a5760405162461bcd60e51b815260206004820152600e60248201526d141bdb1a58de48195e1c1a5c995960921b6044820152606401610219565b6004548111156102cc5760405162461bcd60e51b815260206004820152601c60248201527f4c6f616e20616d6f756e74206578636565647320636f766572616765000000006044820152606401610219565b6002546040516001600160a01b039091169082156108fc029083905f818181858888f19350505050158015610303573d5f803e3d5ffd5b506002546040518281526001600160a01b03909116907fd8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a9060200160405180910390a261034f60015f55565b50565b6002546001600160a01b0316331461037c5760405162461bcd60e51b815260040161021990610694565b610384610552565b60035434146103c75760405162461bcd60e51b815260206004820152600f60248201526e496e636f727265637420707269636560881b6044820152606401610219565b4260055560405134815233907ffbb78d90c03ede71a52f887ed761d6178e310a2c426206ba0dc64a01691e16f19060200160405180910390a261040960015f55565b565b61041361057a565b6104095f6105a7565b6002546001600160a01b031633146104465760405162461bcd60e51b815260040161021990610694565b6006805482919060ff191660018381811115610464576104646105f8565b02179055505f60065460ff166001811115610481576104816105f8565b036104a15766038d7ea4c6800060035566470de4df8200006004556104d6565b600160065460ff1660018111156104ba576104ba6105f8565b036104d6576658d15e1762800060035566b1a2bc2ec500006004555b6006546040517f72a13a5c6bbfd98d3dc4719b767656873b3c13c3139cb44ab7d3002250ba63da9161050d9160ff9091169061060c565b60405180910390a150565b61052061057a565b6001600160a01b03811661054957604051631e4fbdf760e01b81525f6004820152602401610219565b61034f816105a7565b60025f540361057457604051633ee5aeb560e01b815260040160405180910390fd5b60025f55565b6001546001600160a01b031633146104095760405163118cdaa760e01b8152336004820152602401610219565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0905f90a35050565b634e487b7160e01b5f52602160045260245ffd5b602081016002831061062c57634e487b7160e01b5f52602160045260245ffd5b91905290565b5f60208284031215610642575f80fd5b5035919050565b5f60208284031215610659575f80fd5b813560028110610667575f80fd5b9392505050565b5f6020828403121561067e575f80fd5b81356001600160a01b0381168114610667575f80fd5b60208082526028908201527f4f6e6c792074686520696e73757265642063616e20706572666f726d20746869604082015267399030b1ba34b7b760c11b606082015260800190565b808201808211156106fb57634e487b7160e01b5f52601160045260245ffd5b9291505056fea2646970667358221220a3b807b918a383ed9ad48286f8e340500d372d647b0d1841d0f0d6b3d1e2374b64736f6c63430008140033a2646970667358221220ff164871284f84f3748c67602aa4298f3a1ac3aed07bbea41d9994a005b43c6e64736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561000f575f80fd5b5060043610610055575f3560e01c8063715018a6146100595780638da5cb5b146100635780639373c44514610081578063e73faaaa14610089578063f2fde38b14610091575b5f80fd5b6100616100a4565b005b5f54604080516001600160a01b039092168252519081900360200190f35b6100616100b7565b610061610139565b61006161009f36600461028a565b6101b3565b6100ac6101f5565b6100b55f610221565b565b5f3390505f816040516100c990610270565b6001600160a01b039091168152602001604051809103905ff0801580156100f2573d5f803e3d5ffd5b506040516001600160a01b038216815290915033907f1e0b8eaf695896b206f251c69ce62078a74320d12287968695e36e4bf8b41ee4906020015b60405180910390a25050565b5f3390505f8160405161014b9061027d565b6001600160a01b039091168152602001604051809103905ff080158015610174573d5f803e3d5ffd5b506040516001600160a01b038216815290915033907fa3c19013232328fa129e43cb3c1a03233e6c7bd65be78fa8e5d9c30d0742fda19060200161012d565b6101bb6101f5565b6001600160a01b0381166101e957604051631e4fbdf760e01b81525f60048201526024015b60405180910390fd5b6101f281610221565b50565b5f546001600160a01b031633146100b55760405163118cdaa760e01b81523360048201526024016101e0565b5f80546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6107ff806102b883390190565b61085180610ab783390190565b5f6020828403121561029a575f80fd5b81356001600160a01b03811681146102b0575f80fd5b939250505056fe608060405234801561000f575f80fd5b506040516107ff3803806107ff83398101604081905261002e916100e0565b60015f55806001600160a01b03811661006057604051631e4fbdf760e01b81525f600482015260240160405180910390fd5b6100698161008f565b50600280546001600160a01b0319166001600160a01b039290921691909117905561010d565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0905f90a35050565b5f602082840312156100f0575f80fd5b81516001600160a01b0381168114610106575f80fd5b9392505050565b6106e58061011a5f395ff3fe6080604052600436106100a8575f3560e01c806374bce0bc1161006257806374bce0bc146101685780638da5cb5b14610187578063a035b1fe146101a4578063c4b8db46146101b9578063eebb1363146101ce578063f2fde38b146101ed575f80fd5b80630505c8c9146100b35780634cbc03d9146100e25780634ce115d8146101135780634e71d92d1461011d57806367c0d00f14610131578063715018a614610154575f80fd5b366100af57005b5f80fd5b3480156100be575f80fd5b506006546100cc9060ff1681565b6040516100d991906105d1565b60405180910390f35b3480156100ed575f80fd5b506002546001600160a01b03165b6040516001600160a01b0390911681526020016100d9565b61011b61020c565b005b348015610128575f80fd5b5061011b6102cf565b34801561013c575f80fd5b5061014660045481565b6040519081526020016100d9565b34801561015f575f80fd5b5061011b6103cd565b348015610173575f80fd5b5061011b6101823660046105f7565b6103de565b348015610192575f80fd5b506001546001600160a01b03166100fb565b3480156101af575f80fd5b5061014660035481565b3480156101c4575f80fd5b5061014660055481565b3480156101d9575f80fd5b506002546100fb906001600160a01b031681565b3480156101f8575f80fd5b5061011b61020736600461061c565b6104da565b6002546001600160a01b0316331461023f5760405162461bcd60e51b815260040161023690610642565b60405180910390fd5b610247610517565b600354341461028a5760405162461bcd60e51b815260206004820152600f60248201526e496e636f727265637420707269636560881b6044820152606401610236565b4260055560405134815233907ffbb78d90c03ede71a52f887ed761d6178e310a2c426206ba0dc64a01691e16f1906020015b60405180910390a26102cd60015f55565b565b6002546001600160a01b031633146102f95760405162461bcd60e51b815260040161023690610642565b610301610517565b6005546103119062278d0061068a565b4211156103515760405162461bcd60e51b815260206004820152600e60248201526d141bdb1a58de48195e1c1a5c995960921b6044820152606401610236565b6002546004546040516001600160a01b039092169181156108fc0291905f818181858888f1935050505015801561038a573d5f803e3d5ffd5b506002546004546040519081526001600160a01b03909116907fd8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a906020016102bc565b6103d561053f565b6102cd5f61056c565b6002546001600160a01b031633146104085760405162461bcd60e51b815260040161023690610642565b6006805482919060ff191660018381811115610426576104266105bd565b02179055505f60065460ff166001811115610443576104436105bd565b036104635766038d7ea4c6800060035566470de4df820000600455610498565b600160065460ff16600181111561047c5761047c6105bd565b03610498576658d15e1762800060035566b1a2bc2ec500006004555b6006546040517f72a13a5c6bbfd98d3dc4719b767656873b3c13c3139cb44ab7d3002250ba63da916104cf9160ff909116906105d1565b60405180910390a150565b6104e261053f565b6001600160a01b03811661050b57604051631e4fbdf760e01b81525f6004820152602401610236565b6105148161056c565b50565b60025f540361053957604051633ee5aeb560e01b815260040160405180910390fd5b60025f55565b6001546001600160a01b031633146102cd5760405163118cdaa760e01b8152336004820152602401610236565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0905f90a35050565b634e487b7160e01b5f52602160045260245ffd5b60208101600283106105f157634e487b7160e01b5f52602160045260245ffd5b91905290565b5f60208284031215610607575f80fd5b813560028110610615575f80fd5b9392505050565b5f6020828403121561062c575f80fd5b81356001600160a01b0381168114610615575f80fd5b60208082526028908201527f4f6e6c792074686520696e73757265642063616e20706572666f726d20746869604082015267399030b1ba34b7b760c11b606082015260800190565b808201808211156106a957634e487b7160e01b5f52601160045260245ffd5b9291505056fea2646970667358221220822e1c166f6a14079eb372591412dd28eabf1b5adaf94d3b47942622d79a219764736f6c63430008140033608060405234801561000f575f80fd5b5060405161085138038061085183398101604081905261002e916100e0565b60015f55806001600160a01b03811661006057604051631e4fbdf760e01b81525f600482015260240160405180910390fd5b6100698161008f565b50600280546001600160a01b0319166001600160a01b039290921691909117905561010d565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0905f90a35050565b5f602082840312156100f0575f80fd5b81516001600160a01b0381168114610106575f80fd5b9392505050565b6107378061011a5f395ff3fe60806040526004361061009d575f3560e01c806374bce0bc1161006257806374bce0bc146101375780638da5cb5b14610156578063a035b1fe14610187578063c4b8db461461019c578063eebb1363146101b1578063f2fde38b146101d0575f80fd5b80630505c8c9146100a8578063379607f5146100d75780634ce115d8146100f857806367c0d00f14610100578063715018a614610123575f80fd5b366100a457005b5f80fd5b3480156100b3575f80fd5b506006546100c19060ff1681565b6040516100ce919061060c565b60405180910390f35b3480156100e2575f80fd5b506100f66100f1366004610632565b6101ef565b005b6100f6610352565b34801561010b575f80fd5b5061011560045481565b6040519081526020016100ce565b34801561012e575f80fd5b506100f661040b565b348015610142575f80fd5b506100f6610151366004610649565b61041c565b348015610161575f80fd5b506001546001600160a01b03165b6040516001600160a01b0390911681526020016100ce565b348015610192575f80fd5b5061011560035481565b3480156101a7575f80fd5b5061011560055481565b3480156101bc575f80fd5b5060025461016f906001600160a01b031681565b3480156101db575f80fd5b506100f66101ea36600461066e565b610518565b6002546001600160a01b031633146102225760405162461bcd60e51b815260040161021990610694565b60405180910390fd5b61022a610552565b60055461023a9062278d006106dc565b42111561027a5760405162461bcd60e51b815260206004820152600e60248201526d141bdb1a58de48195e1c1a5c995960921b6044820152606401610219565b6004548111156102cc5760405162461bcd60e51b815260206004820152601c60248201527f4c6f616e20616d6f756e74206578636565647320636f766572616765000000006044820152606401610219565b6002546040516001600160a01b039091169082156108fc029083905f818181858888f19350505050158015610303573d5f803e3d5ffd5b506002546040518281526001600160a01b03909116907fd8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a9060200160405180910390a261034f60015f55565b50565b6002546001600160a01b0316331461037c5760405162461bcd60e51b815260040161021990610694565b610384610552565b60035434146103c75760405162461bcd60e51b815260206004820152600f60248201526e496e636f727265637420707269636560881b6044820152606401610219565b4260055560405134815233907ffbb78d90c03ede71a52f887ed761d6178e310a2c426206ba0dc64a01691e16f19060200160405180910390a261040960015f55565b565b61041361057a565b6104095f6105a7565b6002546001600160a01b031633146104465760405162461bcd60e51b815260040161021990610694565b6006805482919060ff191660018381811115610464576104646105f8565b02179055505f60065460ff166001811115610481576104816105f8565b036104a15766038d7ea4c6800060035566470de4df8200006004556104d6565b600160065460ff1660018111156104ba576104ba6105f8565b036104d6576658d15e1762800060035566b1a2bc2ec500006004555b6006546040517f72a13a5c6bbfd98d3dc4719b767656873b3c13c3139cb44ab7d3002250ba63da9161050d9160ff9091169061060c565b60405180910390a150565b61052061057a565b6001600160a01b03811661054957604051631e4fbdf760e01b81525f6004820152602401610219565b61034f816105a7565b60025f540361057457604051633ee5aeb560e01b815260040160405180910390fd5b60025f55565b6001546001600160a01b031633146104095760405163118cdaa760e01b8152336004820152602401610219565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0905f90a35050565b634e487b7160e01b5f52602160045260245ffd5b602081016002831061062c57634e487b7160e01b5f52602160045260245ffd5b91905290565b5f60208284031215610642575f80fd5b5035919050565b5f60208284031215610659575f80fd5b813560028110610667575f80fd5b9392505050565b5f6020828403121561067e575f80fd5b81356001600160a01b0381168114610667575f80fd5b60208082526028908201527f4f6e6c792074686520696e73757265642063616e20706572666f726d20746869604082015267399030b1ba34b7b760c11b606082015260800190565b808201808211156106fb57634e487b7160e01b5f52601160045260245ffd5b9291505056fea2646970667358221220a3b807b918a383ed9ad48286f8e340500d372d647b0d1841d0f0d6b3d1e2374b64736f6c63430008140033a2646970667358221220ff164871284f84f3748c67602aa4298f3a1ac3aed07bbea41d9994a005b43c6e64736f6c63430008140033",
+  "immutableReferences": {},
+  "generatedSources": [
+    {
+      "ast": {
+        "nodeType": "YulBlock",
+        "src": "0:219:6",
+        "statements": [
+          {
+            "nodeType": "YulBlock",
+            "src": "6:3:6",
+            "statements": []
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "115:102:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "125:26:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "137:9:6"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "148:2:6",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "133:3:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "133:18:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "tail",
+                      "nodeType": "YulIdentifier",
+                      "src": "125:4:6"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "167:9:6"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "value0",
+                            "nodeType": "YulIdentifier",
+                            "src": "182:6:6"
+                          },
+                          {
+                            "arguments": [
+                              {
+                                "arguments": [
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "198:3:6",
+                                    "type": "",
+                                    "value": "160"
+                                  },
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "203:1:6",
+                                    "type": "",
+                                    "value": "1"
+                                  }
+                                ],
+                                "functionName": {
+                                  "name": "shl",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "194:3:6"
+                                },
+                                "nodeType": "YulFunctionCall",
+                                "src": "194:11:6"
+                              },
+                              {
+                                "kind": "number",
+                                "nodeType": "YulLiteral",
+                                "src": "207:1:6",
+                                "type": "",
+                                "value": "1"
+                              }
+                            ],
+                            "functionName": {
+                              "name": "sub",
+                              "nodeType": "YulIdentifier",
+                              "src": "190:3:6"
+                            },
+                            "nodeType": "YulFunctionCall",
+                            "src": "190:19:6"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "and",
+                          "nodeType": "YulIdentifier",
+                          "src": "178:3:6"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "178:32:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "160:6:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "160:51:6"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "160:51:6"
+                }
+              ]
+            },
+            "name": "abi_encode_tuple_t_address__to_t_address__fromStack_reversed",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "84:9:6",
+                "type": ""
+              },
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "95:6:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "tail",
+                "nodeType": "YulTypedName",
+                "src": "106:4:6",
+                "type": ""
+              }
+            ],
+            "src": "14:203:6"
+          }
+        ]
+      },
+      "contents": "{\n    { }\n    function abi_encode_tuple_t_address__to_t_address__fromStack_reversed(headStart, value0) -> tail\n    {\n        tail := add(headStart, 32)\n        mstore(headStart, and(value0, sub(shl(160, 1), 1)))\n    }\n}",
+      "id": 6,
+      "language": "Yul",
+      "name": "#utility.yul"
+    }
+  ],
+  "deployedGeneratedSources": [
+    {
+      "ast": {
+        "nodeType": "YulBlock",
+        "src": "0:510:6",
+        "statements": [
+          {
+            "nodeType": "YulBlock",
+            "src": "6:3:6",
+            "statements": []
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "115:102:6",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "125:26:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "137:9:6"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "148:2:6",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "133:3:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "133:18:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "tail",
+                      "nodeType": "YulIdentifier",
+                      "src": "125:4:6"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "167:9:6"
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "name": "value0",
+                            "nodeType": "YulIdentifier",
+                            "src": "182:6:6"
+                          },
+                          {
+                            "arguments": [
+                              {
+                                "arguments": [
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "198:3:6",
+                                    "type": "",
+                                    "value": "160"
+                                  },
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "203:1:6",
+                                    "type": "",
+                                    "value": "1"
+                                  }
+                                ],
+                                "functionName": {
+                                  "name": "shl",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "194:3:6"
+                                },
+                                "nodeType": "YulFunctionCall",
+                                "src": "194:11:6"
+                              },
+                              {
+                                "kind": "number",
+                                "nodeType": "YulLiteral",
+                                "src": "207:1:6",
+                                "type": "",
+                                "value": "1"
+                              }
+                            ],
+                            "functionName": {
+                              "name": "sub",
+                              "nodeType": "YulIdentifier",
+                              "src": "190:3:6"
+                            },
+                            "nodeType": "YulFunctionCall",
+                            "src": "190:19:6"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "and",
+                          "nodeType": "YulIdentifier",
+                          "src": "178:3:6"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "178:32:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "160:6:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "160:51:6"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "160:51:6"
+                }
+              ]
+            },
+            "name": "abi_encode_tuple_t_address__to_t_address__fromStack_reversed",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "84:9:6",
+                "type": ""
+              },
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "95:6:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "tail",
+                "nodeType": "YulTypedName",
+                "src": "106:4:6",
+                "type": ""
+              }
+            ],
+            "src": "14:203:6"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "292:216:6",
+              "statements": [
+                {
+                  "body": {
+                    "nodeType": "YulBlock",
+                    "src": "338:16:6",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "347:1:6",
+                              "type": "",
+                              "value": "0"
+                            },
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "350:1:6",
+                              "type": "",
+                              "value": "0"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "revert",
+                            "nodeType": "YulIdentifier",
+                            "src": "340:6:6"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "340:12:6"
+                        },
+                        "nodeType": "YulExpressionStatement",
+                        "src": "340:12:6"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "name": "dataEnd",
+                            "nodeType": "YulIdentifier",
+                            "src": "313:7:6"
+                          },
+                          {
+                            "name": "headStart",
+                            "nodeType": "YulIdentifier",
+                            "src": "322:9:6"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "sub",
+                          "nodeType": "YulIdentifier",
+                          "src": "309:3:6"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "309:23:6"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "334:2:6",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "slt",
+                      "nodeType": "YulIdentifier",
+                      "src": "305:3:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "305:32:6"
+                  },
+                  "nodeType": "YulIf",
+                  "src": "302:52:6"
+                },
+                {
+                  "nodeType": "YulVariableDeclaration",
+                  "src": "363:36:6",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "389:9:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "calldataload",
+                      "nodeType": "YulIdentifier",
+                      "src": "376:12:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "376:23:6"
+                  },
+                  "variables": [
+                    {
+                      "name": "value",
+                      "nodeType": "YulTypedName",
+                      "src": "367:5:6",
+                      "type": ""
+                    }
+                  ]
+                },
+                {
+                  "body": {
+                    "nodeType": "YulBlock",
+                    "src": "462:16:6",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "471:1:6",
+                              "type": "",
+                              "value": "0"
+                            },
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "474:1:6",
+                              "type": "",
+                              "value": "0"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "revert",
+                            "nodeType": "YulIdentifier",
+                            "src": "464:6:6"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "464:12:6"
+                        },
+                        "nodeType": "YulExpressionStatement",
+                        "src": "464:12:6"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "name": "value",
+                            "nodeType": "YulIdentifier",
+                            "src": "421:5:6"
+                          },
+                          {
+                            "arguments": [
+                              {
+                                "name": "value",
+                                "nodeType": "YulIdentifier",
+                                "src": "432:5:6"
+                              },
+                              {
+                                "arguments": [
+                                  {
+                                    "arguments": [
+                                      {
+                                        "kind": "number",
+                                        "nodeType": "YulLiteral",
+                                        "src": "447:3:6",
+                                        "type": "",
+                                        "value": "160"
+                                      },
+                                      {
+                                        "kind": "number",
+                                        "nodeType": "YulLiteral",
+                                        "src": "452:1:6",
+                                        "type": "",
+                                        "value": "1"
+                                      }
+                                    ],
+                                    "functionName": {
+                                      "name": "shl",
+                                      "nodeType": "YulIdentifier",
+                                      "src": "443:3:6"
+                                    },
+                                    "nodeType": "YulFunctionCall",
+                                    "src": "443:11:6"
+                                  },
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "456:1:6",
+                                    "type": "",
+                                    "value": "1"
+                                  }
+                                ],
+                                "functionName": {
+                                  "name": "sub",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "439:3:6"
+                                },
+                                "nodeType": "YulFunctionCall",
+                                "src": "439:19:6"
+                              }
+                            ],
+                            "functionName": {
+                              "name": "and",
+                              "nodeType": "YulIdentifier",
+                              "src": "428:3:6"
+                            },
+                            "nodeType": "YulFunctionCall",
+                            "src": "428:31:6"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "eq",
+                          "nodeType": "YulIdentifier",
+                          "src": "418:2:6"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "418:42:6"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "iszero",
+                      "nodeType": "YulIdentifier",
+                      "src": "411:6:6"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "411:50:6"
+                  },
+                  "nodeType": "YulIf",
+                  "src": "408:70:6"
+                },
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "487:15:6",
+                  "value": {
+                    "name": "value",
+                    "nodeType": "YulIdentifier",
+                    "src": "497:5:6"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "value0",
+                      "nodeType": "YulIdentifier",
+                      "src": "487:6:6"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "abi_decode_tuple_t_address",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "258:9:6",
+                "type": ""
+              },
+              {
+                "name": "dataEnd",
+                "nodeType": "YulTypedName",
+                "src": "269:7:6",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "281:6:6",
+                "type": ""
+              }
+            ],
+            "src": "222:286:6"
+          }
+        ]
+      },
+      "contents": "{\n    { }\n    function abi_encode_tuple_t_address__to_t_address__fromStack_reversed(headStart, value0) -> tail\n    {\n        tail := add(headStart, 32)\n        mstore(headStart, and(value0, sub(shl(160, 1), 1)))\n    }\n    function abi_decode_tuple_t_address(headStart, dataEnd) -> value0\n    {\n        if slt(sub(dataEnd, headStart), 32) { revert(0, 0) }\n        let value := calldataload(headStart)\n        if iszero(eq(value, and(value, sub(shl(160, 1), 1)))) { revert(0, 0) }\n        value0 := value\n    }\n}",
+      "id": 6,
+      "language": "Yul",
+      "name": "#utility.yul"
+    }
+  ],
+  "sourceMap": "162:794:4:-:0;;;380:36;;;;;;;;;-1:-1:-1;402:10:4;;1269:95:0;;1322:31;;-1:-1:-1;;;1322:31:0;;1350:1;1322:31;;;160:51:6;133:18;;1322:31:0;;;;;;;1269:95;1373:32;1392:12;1373:18;:32::i;:::-;1225:187;162:794:4;;2912:187:0;2985:16;3004:6;;-1:-1:-1;;;;;3020:17:0;;;-1:-1:-1;;;;;;3020:17:0;;;;;;3052:40;;3004:6;;;;;;;3052:40;;2985:16;3052:40;2975:124;2912:187;:::o;14:203:6:-;162:794:4;;;;;;",
+  "deployedSourceMap": "162:794:4:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2293:101:0;;;:::i;:::-;;1638:85;1684:7;1710:6;1638:85;;;-1:-1:-1;;;;;1710:6:0;;;160:51:6;;1638:85:0;;;;;148:2:6;1638:85:0;;;422:248:4;;;:::i;676:278::-;;;:::i;2543:215:0:-;;;;;;:::i;:::-;;:::i;2293:101::-;1531:13;:11;:13::i;:::-;2357:30:::1;2384:1;2357:18;:30::i;:::-;2293:101::o:0;422:248:4:-;474:16;493:10;474:29;;513:37;579:8;553:35;;;;;:::i;:::-;-1:-1:-1;;;;;178:32:6;;;160:51;;148:2;133:18;553:35:4;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;603:60:4;;-1:-1:-1;;;;;178:32:6;;160:51;;513:75:4;;-1:-1:-1;626:10:4;;603:60;;148:2:6;133:18;603:60:4;;;;;;;;464:206;;422:248::o;676:278::-;732:15;750:10;732:28;;770:49;856:7;822:42;;;;;:::i;:::-;-1:-1:-1;;;;;178:32:6;;;160:51;;148:2;133:18;822:42:4;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;879:68:4;;-1:-1:-1;;;;;178:32:6;;160:51;;770:94:4;;-1:-1:-1;906:10:4;;879:68;;148:2:6;133:18;879:68:4;14:203:6;2543:215:0;1531:13;:11;:13::i;:::-;-1:-1:-1;;;;;2627:22:0;::::1;2623:91;;2672:31;::::0;-1:-1:-1;;;2672:31:0;;2700:1:::1;2672:31;::::0;::::1;160:51:6::0;133:18;;2672:31:0::1;;;;;;;;2623:91;2723:28;2742:8;2723:18;:28::i;:::-;2543:215:::0;:::o;1796:162::-;1684:7;1710:6;-1:-1:-1;;;;;1710:6:0;735:10:1;1855:23:0;1851:101;;1901:40;;-1:-1:-1;;;1901:40:0;;735:10:1;1901:40:0;;;160:51:6;133:18;;1901:40:0;14:203:6;2912:187:0;2985:16;3004:6;;-1:-1:-1;;;;;3020:17:0;;;-1:-1:-1;;;;;;3020:17:0;;;;;;3052:40;;3004:6;;;;;;;3052:40;;2985:16;3052:40;2975:124;2912:187;:::o;-1:-1:-1:-;;;;;;;;:::o;:::-;;;;;;;;:::o;222:286:6:-;281:6;334:2;322:9;313:7;309:23;305:32;302:52;;;350:1;347;340:12;302:52;376:23;;-1:-1:-1;;;;;428:31:6;;418:42;;408:70;;474:1;471;464:12;408:70;497:5;222:286;-1:-1:-1;;;222:286:6:o",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.20;\n\nimport \"./Wallet.sol\";\nimport \"./Collateral.sol\";\nimport \"@openzeppelin/contracts/access/Ownable.sol\";\n\ncontract InsuranceFactory is Ownable {\n    event WalletInsuranceCreated(address indexed user, address insuranceContract);\n    event CollateralInsuranceCreated(address indexed user, address insuranceContract);\n    \n    constructor() Ownable(msg.sender) {}\n\n    function createWalletInsurance() external {\n        address _insured = msg.sender;\n        CryptoWalletInsurance walletInsurance = new CryptoWalletInsurance(_insured);\n        emit WalletInsuranceCreated(msg.sender, address(walletInsurance));\n    }\n\n    function createCollateralInsurance() external {\n        address insured = msg.sender;\n        CollateralProtectionInsurance collateralInsurance = new CollateralProtectionInsurance(insured);\n        emit CollateralInsuranceCreated(msg.sender, address(collateralInsurance));\n    }\n}\n",
+  "sourcePath": "/home/sourav/programming/MetaCrafter/eth-advanced/2. Insurance/contracts/InsuranceFactory.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/InsuranceFactory.sol",
+    "exportedSymbols": {
+      "CollateralProtectionInsurance": [
+        428
+      ],
+      "Context": [
+        177
+      ],
+      "CryptoWalletInsurance": [
+        691
+      ],
+      "InsuranceFactory": [
+        510
+      ],
+      "Ownable": [
+        147
+      ],
+      "ReentrancyGuard": [
+        246
+      ]
+    },
+    "id": 511,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 430,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".20"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:24:4"
+      },
+      {
+        "absolutePath": "project:/contracts/Wallet.sol",
+        "file": "./Wallet.sol",
+        "id": 431,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 511,
+        "sourceUnit": 692,
+        "src": "58:22:4",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/Collateral.sol",
+        "file": "./Collateral.sol",
+        "id": 432,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 511,
+        "sourceUnit": 429,
+        "src": "81:26:4",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
+        "file": "@openzeppelin/contracts/access/Ownable.sol",
+        "id": 433,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 511,
+        "sourceUnit": 148,
+        "src": "108:52:4",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 434,
+              "name": "Ownable",
+              "nameLocations": [
+                "191:7:4"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 147,
+              "src": "191:7:4"
+            },
+            "id": 435,
+            "nodeType": "InheritanceSpecifier",
+            "src": "191:7:4"
+          }
+        ],
+        "canonicalName": "InsuranceFactory",
+        "contractDependencies": [
+          428,
+          691
+        ],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 510,
+        "linearizedBaseContracts": [
+          510,
+          147,
+          177
+        ],
+        "name": "InsuranceFactory",
+        "nameLocation": "171:16:4",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "eventSelector": "1e0b8eaf695896b206f251c69ce62078a74320d12287968695e36e4bf8b41ee4",
+            "id": 441,
+            "name": "WalletInsuranceCreated",
+            "nameLocation": "211:22:4",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 440,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 437,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "user",
+                  "nameLocation": "250:4:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 441,
+                  "src": "234:20:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 436,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "234:7:4",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 439,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "insuranceContract",
+                  "nameLocation": "264:17:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 441,
+                  "src": "256:25:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 438,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "256:7:4",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "233:49:4"
+            },
+            "src": "205:78:4"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "a3c19013232328fa129e43cb3c1a03233e6c7bd65be78fa8e5d9c30d0742fda1",
+            "id": 447,
+            "name": "CollateralInsuranceCreated",
+            "nameLocation": "294:26:4",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 446,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 443,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "user",
+                  "nameLocation": "337:4:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 447,
+                  "src": "321:20:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 442,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "321:7:4",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 445,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "insuranceContract",
+                  "nameLocation": "351:17:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 447,
+                  "src": "343:25:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 444,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "343:7:4",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "320:49:4"
+            },
+            "src": "288:82:4"
+          },
+          {
+            "body": {
+              "id": 454,
+              "nodeType": "Block",
+              "src": "414:2:4",
+              "statements": []
+            },
+            "id": 455,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "expression": {
+                      "id": 450,
+                      "name": "msg",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967281,
+                      "src": "402:3:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_message",
+                        "typeString": "msg"
+                      }
+                    },
+                    "id": 451,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "406:6:4",
+                    "memberName": "sender",
+                    "nodeType": "MemberAccess",
+                    "src": "402:10:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  }
+                ],
+                "id": 452,
+                "kind": "baseConstructorSpecifier",
+                "modifierName": {
+                  "id": 449,
+                  "name": "Ownable",
+                  "nameLocations": [
+                    "394:7:4"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 147,
+                  "src": "394:7:4"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "394:19:4"
+              }
+            ],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 448,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "391:2:4"
+            },
+            "returnParameters": {
+              "id": 453,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "414:0:4"
+            },
+            "scope": 510,
+            "src": "380:36:4",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 481,
+              "nodeType": "Block",
+              "src": "464:206:4",
+              "statements": [
+                {
+                  "assignments": [
+                    459
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 459,
+                      "mutability": "mutable",
+                      "name": "_insured",
+                      "nameLocation": "482:8:4",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 481,
+                      "src": "474:16:4",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 458,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "474:7:4",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 462,
+                  "initialValue": {
+                    "expression": {
+                      "id": 460,
+                      "name": "msg",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967281,
+                      "src": "493:3:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_message",
+                        "typeString": "msg"
+                      }
+                    },
+                    "id": 461,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "497:6:4",
+                    "memberName": "sender",
+                    "nodeType": "MemberAccess",
+                    "src": "493:10:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "474:29:4"
+                },
+                {
+                  "assignments": [
+                    465
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 465,
+                      "mutability": "mutable",
+                      "name": "walletInsurance",
+                      "nameLocation": "535:15:4",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 481,
+                      "src": "513:37:4",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_CryptoWalletInsurance_$691",
+                        "typeString": "contract CryptoWalletInsurance"
+                      },
+                      "typeName": {
+                        "id": 464,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 463,
+                          "name": "CryptoWalletInsurance",
+                          "nameLocations": [
+                            "513:21:4"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 691,
+                          "src": "513:21:4"
+                        },
+                        "referencedDeclaration": 691,
+                        "src": "513:21:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_CryptoWalletInsurance_$691",
+                          "typeString": "contract CryptoWalletInsurance"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 471,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 469,
+                        "name": "_insured",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 459,
+                        "src": "579:8:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 468,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "NewExpression",
+                      "src": "553:25:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_creation_nonpayable$_t_address_$returns$_t_contract$_CryptoWalletInsurance_$691_$",
+                        "typeString": "function (address) returns (contract CryptoWalletInsurance)"
+                      },
+                      "typeName": {
+                        "id": 467,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 466,
+                          "name": "CryptoWalletInsurance",
+                          "nameLocations": [
+                            "557:21:4"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 691,
+                          "src": "557:21:4"
+                        },
+                        "referencedDeclaration": 691,
+                        "src": "557:21:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_CryptoWalletInsurance_$691",
+                          "typeString": "contract CryptoWalletInsurance"
+                        }
+                      }
+                    },
+                    "id": 470,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "553:35:4",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_CryptoWalletInsurance_$691",
+                      "typeString": "contract CryptoWalletInsurance"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "513:75:4"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 473,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "626:3:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 474,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "630:6:4",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "626:10:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "id": 477,
+                            "name": "walletInsurance",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 465,
+                            "src": "646:15:4",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_CryptoWalletInsurance_$691",
+                              "typeString": "contract CryptoWalletInsurance"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_CryptoWalletInsurance_$691",
+                              "typeString": "contract CryptoWalletInsurance"
+                            }
+                          ],
+                          "id": 476,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "638:7:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 475,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "638:7:4",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 478,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "638:24:4",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 472,
+                      "name": "WalletInsuranceCreated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 441,
+                      "src": "603:22:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address)"
+                      }
+                    },
+                    "id": 479,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "603:60:4",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 480,
+                  "nodeType": "EmitStatement",
+                  "src": "598:65:4"
+                }
+              ]
+            },
+            "functionSelector": "9373c445",
+            "id": 482,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createWalletInsurance",
+            "nameLocation": "431:21:4",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 456,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "452:2:4"
+            },
+            "returnParameters": {
+              "id": 457,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "464:0:4"
+            },
+            "scope": 510,
+            "src": "422:248:4",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 508,
+              "nodeType": "Block",
+              "src": "722:232:4",
+              "statements": [
+                {
+                  "assignments": [
+                    486
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 486,
+                      "mutability": "mutable",
+                      "name": "insured",
+                      "nameLocation": "740:7:4",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 508,
+                      "src": "732:15:4",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 485,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "732:7:4",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 489,
+                  "initialValue": {
+                    "expression": {
+                      "id": 487,
+                      "name": "msg",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967281,
+                      "src": "750:3:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_message",
+                        "typeString": "msg"
+                      }
+                    },
+                    "id": 488,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "754:6:4",
+                    "memberName": "sender",
+                    "nodeType": "MemberAccess",
+                    "src": "750:10:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "732:28:4"
+                },
+                {
+                  "assignments": [
+                    492
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 492,
+                      "mutability": "mutable",
+                      "name": "collateralInsurance",
+                      "nameLocation": "800:19:4",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 508,
+                      "src": "770:49:4",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_CollateralProtectionInsurance_$428",
+                        "typeString": "contract CollateralProtectionInsurance"
+                      },
+                      "typeName": {
+                        "id": 491,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 490,
+                          "name": "CollateralProtectionInsurance",
+                          "nameLocations": [
+                            "770:29:4"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 428,
+                          "src": "770:29:4"
+                        },
+                        "referencedDeclaration": 428,
+                        "src": "770:29:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_CollateralProtectionInsurance_$428",
+                          "typeString": "contract CollateralProtectionInsurance"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 498,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 496,
+                        "name": "insured",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 486,
+                        "src": "856:7:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 495,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "NewExpression",
+                      "src": "822:33:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_creation_nonpayable$_t_address_$returns$_t_contract$_CollateralProtectionInsurance_$428_$",
+                        "typeString": "function (address) returns (contract CollateralProtectionInsurance)"
+                      },
+                      "typeName": {
+                        "id": 494,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 493,
+                          "name": "CollateralProtectionInsurance",
+                          "nameLocations": [
+                            "826:29:4"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 428,
+                          "src": "826:29:4"
+                        },
+                        "referencedDeclaration": 428,
+                        "src": "826:29:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_CollateralProtectionInsurance_$428",
+                          "typeString": "contract CollateralProtectionInsurance"
+                        }
+                      }
+                    },
+                    "id": 497,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "822:42:4",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_CollateralProtectionInsurance_$428",
+                      "typeString": "contract CollateralProtectionInsurance"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "770:94:4"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 500,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "906:3:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 501,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "910:6:4",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "906:10:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "id": 504,
+                            "name": "collateralInsurance",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 492,
+                            "src": "926:19:4",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_CollateralProtectionInsurance_$428",
+                              "typeString": "contract CollateralProtectionInsurance"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_CollateralProtectionInsurance_$428",
+                              "typeString": "contract CollateralProtectionInsurance"
+                            }
+                          ],
+                          "id": 503,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "918:7:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 502,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "918:7:4",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 505,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "918:28:4",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 499,
+                      "name": "CollateralInsuranceCreated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 447,
+                      "src": "879:26:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address)"
+                      }
+                    },
+                    "id": 506,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "879:68:4",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 507,
+                  "nodeType": "EmitStatement",
+                  "src": "874:73:4"
+                }
+              ]
+            },
+            "functionSelector": "e73faaaa",
+            "id": 509,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createCollateralInsurance",
+            "nameLocation": "685:25:4",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 483,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "710:2:4"
+            },
+            "returnParameters": {
+              "id": 484,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "722:0:4"
+            },
+            "scope": 510,
+            "src": "676:278:4",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 511,
+        "src": "162:794:4",
+        "usedErrors": [
+          13,
+          18
+        ],
+        "usedEvents": [
+          24,
+          441,
+          447
+        ]
+      }
+    ],
+    "src": "32:925:4"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.20+commit.a1b79de6.Emscripten.clang"
+  },
+  "networks": {
+    "11155111": {
+      "events": {
+        "0xa3c19013232328fa129e43cb3c1a03233e6c7bd65be78fa8e5d9c30d0742fda1": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "insuranceContract",
+              "type": "address"
+            }
+          ],
+          "name": "CollateralInsuranceCreated",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x1e0b8eaf695896b206f251c69ce62078a74320d12287968695e36e4bf8b41ee4": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "insuranceContract",
+              "type": "address"
+            }
+          ],
+          "name": "WalletInsuranceCreated",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xe5C220230316dc4BC98122B320d501E08839ae1a",
+      "transactionHash": "0xc3bb63c4b045dd7de6ccd94f8c520b60874eff661403e03e4d660210ceac579f"
+    }
+  },
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2024-06-17T10:37:09.208Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "errors": {
+      "OwnableInvalidOwner(address)": [
+        {
+          "details": "The owner is not a valid owner account. (eg. `address(0)`)"
+        }
+      ],
+      "OwnableUnauthorizedAccount(address)": [
+        {
+          "details": "The caller account is not authorized to perform an operation."
+        }
+      ]
+    },
+    "kind": "dev",
+    "methods": {
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
