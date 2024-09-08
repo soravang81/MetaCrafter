@@ -15,7 +15,7 @@ module.exports = {
     }
   },
   networks: {
-    amoy: {
+    sepolia: {
       url:  `https://eth-sepolia.g.alchemy.com/v2/${api_key.toString()}`,
       chainId: 11155111,
       gasPrice: 250000,
@@ -39,14 +39,14 @@ module.exports = {
         private_key
       ]
     },
-    // amoy: {
-    //   url: `https://polygon-amoy.g.alchemy.com/v2/${api_key.toString()}`,
-    //   chainId: 80002,
-    //   gasPrice: 18000000,
-    //   accounts: [
-    //     private_key
-    //   ]
-    // },
+    amoy: {
+      url: `https://polygon-amoy.g.alchemy.com/v2/${api_key.toString()}`,
+      chainId: 80002,
+      gasPrice: 18000000,
+      accounts: [
+        private_key
+      ]
+    },
     mumbai: {
       url: process.env.NEXT_PUBLIC_MUMBAI_RPC_URL,
       chainId: 80001,

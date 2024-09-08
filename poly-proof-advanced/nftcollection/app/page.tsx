@@ -28,18 +28,18 @@ export default function Home(): React.ReactNode {
               authorization: `Bearer ${process.env.NEXT_PUBLIC_EDEN_API_KEY}`,
             },
             data: {
-              providers: "replicate",
+              providers: "amazon/titan-image-generator-v1_standard",
               text: p.trim(),
               resolution: "512x512",
             },
           })
         );
-
+        
         const imgResponses = await Promise.all(imgRequests);
+        console.log(imgResponses);
         const imgUrls = imgResponses.map(
-          (res) => res.data.replicate.items[0].image_resource_url
+          (res) => res.data["amazon/titan-image-generator-v1_standard"].items[0].image_resource_url
         );
-
         const filePromises = imgUrls.map(async (url, index) => {
           const response = await axios.get(url, { responseType: "blob" });
           const blob = response.data;

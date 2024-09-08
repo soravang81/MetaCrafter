@@ -40,6 +40,7 @@ async function main() {
     const imageURI = uris[i];
     const tx = await nft.mint(deployer.address, "https://ipfs.io/ipfs/"+imageURI, prompt, {
       gasPrice: higherGasPrice,
+      gasLimit : 500000,
       nonce: nonce++ 
     });
     await tx.wait(); 

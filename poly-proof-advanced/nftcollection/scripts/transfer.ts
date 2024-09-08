@@ -1,7 +1,9 @@
 import * as hre from 'hardhat';
 const { ethers } = hre as any;
+import FxAbi from "../app/fxabi.json"
 
-const FX_ROOT_ADDRESS = "0xF9bc4a80464E48369303196645e876c8C7D972de";
+const FX_ROOT_ABI = FxAbi;
+const FX_ROOT_ADDRESS = "0x9E688939Cb5d484e401933D850207D6750852053";
 const NFT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
 async function main() {
@@ -14,27 +16,27 @@ async function main() {
     const nftCollection = await NFTCollection.attach(NFT_ADDRESS);
     console.log('NFTCollection attached');
 
-    const FxRoot = await ethers.getContractAt("IFxRoot", FX_ROOT_ADDRESS);
-    console.log('FxRoot contract instance created');
-
     const [owner] = await ethers.getSigners();
     console.log('Owner address:', owner.address);
+
+    const fxRootContract = new ethers.Contract(FX_ROOT_ADDRESS, FX_ROOT_ABI, owner); // Connect with signer
+    console.log('FxRoot contract instance created with signer');
 
     // Get current gas price
     const gasPrice = await ethers.provider.getGasPrice();
     console.log('Current gas price:', ethers.utils.formatUnits(gasPrice, 'gwei'), 'gwei');
- 
+
     // Use 110% of current gas price
     const adjustedGasPrice = gasPrice.mul(110).div(100);
     console.log('Adjusted gas price:', ethers.utils.formatUnits(adjustedGasPrice, 'gwei'), 'gwei');
 
     // Approve all tokens
     for (let i = 0; i < 5; i++) {
-      console.log(`Approving NFT ${i}...`);
       const approveTx = await nftCollection.approve(FX_ROOT_ADDRESS, i, {
-        gasLimit: 100000, // Reduced gas limit
+        gasLimit: 300000, 
         gasPrice: adjustedGasPrice
       });
+      console.log(`Approving NFT ${i}...txHash : ${approveTx.hash}`);
       await approveTx.wait();
       console.log(`Approved NFT ${i}`);
     }
@@ -42,18 +44,18 @@ async function main() {
     // Deposit all tokens
     for (let i = 0; i < 5; i++) {
       console.log(`Depositing NFT ${i}...`);
-      const depositTx = await FxRoot.deposit(NFT_ADDRESS, owner.address, i, "0x", {
-        gasLimit: 200000, // Reduced gas limit
+      const depositTx = await fxRootContract.deposit(NFT_ADDRESS, owner.address, i, "0x", {
+        gasLimit: 300000, 
         gasPrice: adjustedGasPrice
       });
+      console.log(`Deposit tx ${i}...`, depositTx.hash);
       await depositTx.wait();
       console.log(`Deposited NFT ${i} to Amoy`);
     }
 
     // Get the child token address on Amoy
-    const childTokenAddress = await FxRoot.rootToChildToken(NFT_ADDRESS);
+    const childTokenAddress = await fxRootContract.rootToChildTokens(NFT_ADDRESS);
     console.log(`Child token address on Amoy: ${childTokenAddress}`);
-
   } catch (error) {
     console.error('Error in transfer process:', error);
   }
