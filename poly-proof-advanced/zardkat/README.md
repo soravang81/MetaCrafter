@@ -22,6 +22,9 @@ template Multiplier2 () {
 }
 component main = Multiplier2();
 ```
+### Circuit
+![alt text](https://authoring.metacrafters.io/assets/cms/Assessment_b05f6ed658.png?updated_at=2023-02-24T00:00:37.278Z)
+
 ### Install
 `npm i`
 
