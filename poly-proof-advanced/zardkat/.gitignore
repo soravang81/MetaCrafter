@@ -1,0 +1,15 @@
+node_modules
+.env
+coverage
+typechain-types
+types
+coverage.json
+typechain
+typechain-types
+
+# Hardhat files
+cache
+artifacts
+
+# Circom
+out/
